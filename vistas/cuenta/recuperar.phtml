@@ -1,0 +1,37 @@
+<article>                   
+    <form method="post" action="" class="form">
+        <h1><?php echo $this->titulo; ?></h1>
+        <?php if (Sesion::get('msj')) : ?>
+            <div class="correcto">
+                <img alt="img" src="<?php echo $this->rutaPublico ?>img/app/correcto.png"> 
+                <?php echo Sesion::get('msj'); ?>
+            </div>
+            <?php Sesion::matar('msj'); ?>
+        <?php endif; ?>
+        <?php if (isset($this->error)) : ?>
+            <div class="error">
+                <img alt="img" src="<?php echo $this->rutaPublico ?>img/app/error.png">
+                <span>Se ha detectado los siguientes errores:</span>
+                <?php for ($i = 0; $i < count($this->error); $i++) : ?>
+                    <?php echo '<br>', $i + 1, '. ', $this->error[$i]; ?>
+                <?php endfor; ?>
+            </div>
+        <?php endif; ?>
+        <p>
+            Recibirás un email de confirmación con un enlace a una página que deberás visitar antes que transcurra 10 minutos para confirmar la recuperación de tu cuenta.
+            Si aún no puedes ver el email, puede estar en la carpeta Spam o Correo no deseado, para evitar esto agrega <?php echo MAIL_USER; ?> a tu lista de contactos.                    
+        </p>
+        <input type="hidden" name="guardar" value="1">
+        <ul>                   
+            <li>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" class="in" placeholder="Requerido" required
+                       value="<?php if (isset($this->datos['email'])) echo $this->datos['email']; ?>"
+                       pattern="^[a-z0-9_\-\.]+@[a-z0-9_\-\.]+\.[a-z]{2,4}$" title="Escribe tu email">
+            </li>                    
+            <li>
+                <input type="submit" class="submit" value="Enviar">
+            </li>
+        </ul> 
+    </form>
+</article>

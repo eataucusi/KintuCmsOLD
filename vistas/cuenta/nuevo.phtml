@@ -1,0 +1,75 @@
+<article>                   
+    <form method="post" action="" class="form">
+        <h1><?php echo $this->titulo ?></h1>
+        <?php if (Sesion::get('msj')) : ?>
+            <div class="correcto">
+                <img alt="img" src="<?php echo $this->rutaPublico ?>img/app/correcto.png"> 
+                <?php echo Sesion::get('msj'); ?>
+                <p></p>
+                <p>
+                    Recibirás un email de confirmación con un enlace a una página que deberás visitar en las próximas 24 horas para activar tu cuenta.
+                    Si aún no puedes ver el email, puede estar en la carpeta Spam o Correo no deseado, para evitar esto agrega <?php echo MAIL_USER ?> a tu lista de contactos.                    
+                </p>
+            </div>
+            <?php Sesion::matar('msj'); ?>
+        <?php endif; ?>
+        <?php if (isset($this->error)) : ?>
+            <div class="error">
+                <img alt="img" src="<?php echo $this->rutaPublico ?>img/app/error.png">
+                <span>Se ha detectado los siguientes errores:</span>
+                <?php for ($i = 0; $i < count($this->error); $i++) : ?>
+                    <?php echo '<br>', $i + 1, '. ', $this->error[$i]; ?>
+                <?php endfor; ?>
+            </div>
+        <?php endif; ?>
+        <input type="hidden" name="guardar" value="1">
+        <ul>
+            <li>
+                <a href="<?php echo URL_BASE; ?>cuenta/login">Inicia sesión si ya te has registrado</a>
+            </li>
+            <li>
+                Y si aún no estas registrado, regístrate, como usuario registrado podrás:
+                <ul>
+                    <li>* Escribir comentarios.</li>
+                    <li>* Configurar tu imagen.</li>
+                    <li>* Enviar noticias con tu nombre.</li>
+                    <li>* Otras cosas interesantes...</li>
+                    <li>Regístrate ahora! es gratis!, nosotros no venderemos/daremos tus datos a otras personas/empresas.</li>
+                </ul>                    
+            </li>
+            <li>
+                <label for="nombre">Nombre completo:</label>
+                <input type="text" id="nombre" name="nombre" class="in" placeholder="Requerido" required
+                       value="<?php if (isset($this->datos['nombre'])) echo $this->datos['nombre']; ?>"
+                       pattern="^[a-zñáéíóú ]{15,}$" title="Utiliza solo letras, 15 caracteres como mínimo">
+            </li>
+            <li>
+                <label for="login">Login:</label>
+                <input type="text" id="login" name="login" class="in" placeholder="Requerido" required
+                       value="<?php if (isset($this->datos['login'])) echo $this->datos['login']; ?>"
+                       pattern="^[a-z0-9_\-]{6,}$" title="Utiliza sólo letras (a-z), guion, subguión y números, 6 caracteres como mínimo">
+            </li>                    
+            <li>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" class="in" placeholder="Requerido" required
+                       value="<?php if (isset($this->datos['email'])) echo $this->datos['email']; ?>"
+                       pattern="^[a-z0-9_\-\.]+@[a-z0-9_\-\.]+\.[a-z]{2,4}$" title="Escribe tu email">
+            </li>                    
+            <li>
+                <label for="pass">Contraseña:</label>
+                <input type="password" id="pass" name="pass" class="in" placeholder="Requerido" required
+                       value="<?php if (isset($this->datos['pass'])) echo $this->datos['pass']; ?>"
+                       pattern="^.{6,}" title="Utiliza 6 caracteres como mínimo, las contraseñas cortas son fáciles de adivinar">
+            </li>
+            <li>
+                <label for="repass">Repite contraseña:</label>
+                <input type="password" id="repass" name="repass" class="in" placeholder="Requerido" required
+                       value="<?php if (isset($this->datos['repass'])) echo $this->datos['repass']; ?>"
+                       pattern="^.{6,}" title="Utiliza 6 caracteres como mínimo, las contraseñas cortas son fáciles de adivinar">
+            </li>
+            <li>
+                <input type="submit" class="submit" value="Enviar">
+            </li>
+        </ul> 
+    </form>
+</article>

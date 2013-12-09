@@ -1,0 +1,35 @@
+<article>
+    <form method="post" action="" class="form">
+        <h1><?php echo $this->titulo ?></h1>                
+        <?php if (isset($this->error)) : ?>
+            <div class="error">
+                <img alt="img" src="<?php echo $this->rutaPublico ?>img/app/error.png">
+                <?php echo $this->error; ?>
+            </div>
+            <div class="soc_articulo">
+                <a href="<?php echo URL_BASE; ?>">Ir a la pagina de inicio</a><span>|</span><a href="<?php echo URL_BASE; ?>cuenta/recuperar">Intenta otra vez</a>
+            </div>
+        <?php else: ?>                
+            <?php if (isset($this->msj)) : ?>
+                <div class="correcto">
+                    <img alt="img" src="<?php echo $this->rutaPublico ?>img/app/correcto.png"> 
+                    <?php echo $this->msj; ?>
+                </div>
+                <div class="soc_articulo">
+                    <a href="<?php echo URL_BASE; ?>">Ir a la pagina de inicio</a><span>|</span><a href="<?php echo URL_BASE; ?>cuenta/login">Iniciar sesión</a>
+                </div>
+            <?php else: ?> 
+                <p>
+                    Recibirás un email con los datos de tu cuenta.
+                    Si aún no puedes ver el email, puede estar en la carpeta Spam o Correo no deseado, para evitar esto agrega <?php echo MAIL_USER; ?> a tu lista de contactos.                    
+                </p>
+                <input type="hidden" name="guardar" value="1">
+                <ul>                                     
+                    <li>
+                        <input type="submit" class="submit" value="Confirmar"><a href="<?php echo URL_BASE, ADMIN ?>">Ir a la pagina de inicio</a>
+                    </li>
+                </ul>
+            <?php endif; ?>  
+        <?php endif; ?>              
+    </form>
+</article>

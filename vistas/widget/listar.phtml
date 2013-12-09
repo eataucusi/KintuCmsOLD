@@ -1,0 +1,33 @@
+<article>
+    <h1><?php echo $this->titulo ?></h1>  
+    <?php if (Sesion::get('msj')) : ?>
+        <div class="correcto">
+            <img alt="img" src="<?php echo $this->rutaPublico ?>img/app/correcto.png"> 
+            <?php
+            echo Sesion::get('msj');
+            Sesion::matar('msj');
+            ?>
+        </div>
+    <?php endif; ?>
+    <p><a href="<?php echo URL_BASE, 'widget/nuevo', ADMIN ?>" class="add"><img alt="img" src="<?php echo $this->rutaPublico ?>img/app/add.png"> Añadir widget</a></p>
+    <?php if ($this->datos) : ?>
+        <table class="table">
+            <tr>
+                <th>nombre</th><th>titulo</th><th>estado</th><th>peso</th><th colspan="2">operaciones</th>                 
+            </tr>
+            <?php for ($i = 0; $i < count($this->datos); $i++) : ?>
+                <tr>
+                    <td><?php echo $this->datos[$i]['nombre'] ?></td>
+                   <td><?php echo isset($this->datos[$i]['titulo'])? $this->datos[$i]['titulo']: 'Ninguno' ?></td>
+                    <td><?php echo ($this->datos[$i]['visible'] == 1)? 'Deshabilitado': 'Habilitado' ?></td>
+                    <td><?php echo $this->datos[$i]['peso'] ?></td>
+                    <td><a href="<?php echo URL_BASE, 'widget/editar/', $this->datos[$i]['id'], ADMIN ?>">Editar</a></td>
+                    <td><a href="<?php echo URL_BASE, 'widget/eliminar/', $this->datos[$i]['id'], ADMIN ?>"><?php echo ($this->datos[$i]['visible'] == 1) ? 'Habilitar' : 'Deshabilitar'; ?></a></td>
+                </tr>
+            <?php endfor; ?>
+        </table>
+        <?php require RAIZ . 'vistas' . SD . '_utilidades' . SD .'paginador.phtml' ?>
+    <?php else : ?>
+        <p>Esta categoría no tiene articulos.</p>
+    <?php endif; ?>            
+</article>

@@ -1,0 +1,12 @@
+<article>                   
+    <form method="post" action="<?php echo ADMIN ?>" class="form">
+        <h1><?php echo $this->titulo; ?></h1>
+        <input type="hidden" name="guardar" value="1">
+        <p><?php echo $this->datos['comentario']; ?></p>
+        <ul>              
+            <li>
+                <input type="submit" class="submit" value="Confirmar"><a class="atras" href="<?php echo URL_BASE, 'articulo/listar', ADMIN ?>">Cancelar</a>
+            </li>
+        </ul>    
+    </form>
+</article>

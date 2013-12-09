@@ -1,0 +1,24 @@
+<article>                   
+    <form method="post" action="" class="form">
+        <h1><?php echo $this->titulo; ?></h1>
+        <?php if (isset($this->error)) : ?>
+            <div class="error">
+                <img alt="img" src="<?php echo $this->rutaPublico ?>img/app/error.png">
+                <span>Se ha detectado los siguientes errores:</span>
+                <?php for ($i = 0; $i < count($this->error); $i++) : ?>
+                    <?php echo '<br>', $i + 1, '. ', $this->error[$i]; ?>
+                <?php endfor; ?>
+            </div>
+        <?php endif; ?>
+        <input type="hidden" name="guardar" value="1">
+        <ul>              
+            <li>
+                <?php if (isset($this->error)) : ?>
+                    <a class="atras1" href="<?php echo URL_BASE, 'menu/listar', ADMIN ?>">Cancelar</a>
+                <?php else: ?>
+                    <input type="submit" class="submit" value="Confirmar"><a class="atras" href="<?php echo URL_BASE, 'menu/listar', ADMIN ?>">Cancelar</a>
+                <?php endif; ?>                 
+            </li>
+        </ul>    
+    </form>
+</article>

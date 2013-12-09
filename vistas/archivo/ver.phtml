@@ -1,0 +1,31 @@
+<article>
+    <h1><?php echo $this->titulo ?></h1>  
+    <?php if (Sesion::get('msj')) : ?>
+        <div class="correcto">
+            <img alt="img" src="<?php echo $this->rutaPublico ?>img/app/correcto.png"> 
+            <?php
+            echo Sesion::get('msj');
+            Sesion::set('msj', '');
+            ?>
+        </div>
+    <?php endif; ?>
+    <?php if ($this->datos) : ?>
+        <table class="table">
+            <tr>
+                <th>descripción</th><th>subido el</th><th>n° descargas</th><th>url</th><th>descargar</th>               
+            </tr>
+            <?php for ($i = 0; $i < count($this->datos); $i++) : ?>
+                <tr>
+                    <td><?php echo $this->datos[$i]['descripcion']; ?></td>                
+                    <td><?php echo $this->datos[$i]['subido']; ?></td>
+                    <td><?php echo $this->datos[$i]['descarga']; ?></td>  
+                    <td><textarea rows="5" cols="15" class="txtarea"><?php echo URL_BASE, 'archivo/descargar/', $this->datos[$i]['nombre']; ?></textarea></td>
+                    <td><a href="<?php echo URL_BASE, 'archivo/descargar/', $this->datos[$i]['nombre'], ADMIN ?>">Descargar</a></td>
+                </tr>
+            <?php endfor; ?>
+        </table>
+        <?php require RAIZ . SD . 'vistas' . SD . '_utilidades' . SD . 'paginador.phtml'; ?>
+    <?php else : ?>
+        <p>No se encontró resultados.</p>
+    <?php endif; ?>            
+</article>

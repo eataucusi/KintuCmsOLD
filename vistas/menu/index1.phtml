@@ -1,0 +1,15 @@
+<article>
+    <h1><?php echo $this->titulo; ?></h1>  
+    <p>
+        Elija una opción, para mostrar la lista de menús.
+    </p>
+    <ul class="submenu">
+        <?php $subm = $this->submenu['submenu']; ?>
+        <?php for ($i = 0; $i < count($subm); $i++): ?>
+            <li>
+                <h3><a href="<?php echo URL_BASE, $subm[$i]['url'], ADMIN ?>"><?php echo $subm[$i]['texto']; ?></a></h3>
+                <p><?php echo $subm[$i]['detalle']; ?></p>
+            </li>
+        <?php endfor; ?>
+    </ul>
+</article>

@@ -1,0 +1,60 @@
+<article>                   
+    <form method="post" action="" class="form">
+        <h1><?php echo $this->titulo; ?></h1>
+        <?php if (isset($this->error)) : ?>
+            <div class="error">
+                <img alt="img" src="<?php echo $this->plantilla; ?>img/error.png">
+                <span>Se ha detectado los siguientes errores:</span>
+                <?php for ($i = 0; $i < count($this->error); $i++) : ?>
+                    <?php echo '<br>', $i + 1, '. ', $this->error[$i]; ?>
+                <?php endfor; ?>
+            </div>
+        <?php endif; ?>
+        <input type="hidden" name="guardar" value="1">
+        <ul>              
+            <li>
+                <label for="texto">Texto:</label>
+                <input type="text" id="texto" name="texto" class="in" placeholder="Requerido" required value="<?php if (isset($this->datos['texto'])) echo $this->datos['texto']; ?>">
+            </li>
+            <li>
+                <label for="url">Url:</label>
+                <input type="text" id="url" name="url" class="in" placeholder="Requerido" required value="<?php if (isset($this->datos['url'])) echo $this->datos['url']; ?>">
+                <a href="menu/enlaces" class="elegirUrl">Elegir</a>                
+            </li>
+            <li>
+                <label for="ventana">Tipo url</label>
+                <select id="ventana" name="ventana" optional>
+                    <option value="">Interna(Nuestra página)</option>
+                    <option value="_blank"<?php echo (isset($this->datos['ventana']))? 'selected' :'' ?>>Externa(Enlace a sitios externos)</option>
+                </select>
+            </li>
+            <li>
+                <label for="detalle">Detalle:</label>
+                <input type="text" id="detalle" name="detalle" class="in largo" placeholder="Requerido" required value="<?php if (isset($this->datos['detalle'])) echo $this->datos['detalle']; ?>">
+            </li>
+            <li>
+                <label for="class">Class:</label>
+                <input type="text" id="class" name="class" class="in" placeholder="Ninguno" optional value="<?php echo (isset($this->datos['class'])) ? $this->datos['class'] : 'Ninguno'; ?>">
+            </li>
+            <li>
+                <label for="role_id">Para:</label>
+                <select id="role_id" name="role_id" required>
+                    <option value="">Seleccione</option>
+                    <?php for ($i = 0; $i < count($this->rol); $i++) : ?>
+                        <option value="<?php echo $this->rol[$i]['id']; ?>"
+                                <?php if (isset($this->datos['rol_id']) && $this->datos['rol_id'] == $this->rol[$i]['id']) echo 'selected' ?>>
+                                    <?php echo $this->rol[$i]['rol']; ?>
+                        </option>
+                    <?php endfor; ?>
+                </select>
+            </li>
+            <li>
+                <label for="padre">Es hijo de:</label>
+                <div class="ajax-padre"></div>
+            </li>
+            <li>
+                <input type="submit" class="submit" value="Guardar">
+            </li>
+        </ul> 
+    </form>
+</article>

@@ -1,0 +1,9 @@
+<?php if ($slides) : ?>
+<div id="waylis_slider">
+    <ul id="waylis_slides">
+        <?php for ($i = 0; $i < count($slides); $i++) : ?>
+        <li><img src="<?php echo URL_BASE, 'publico/img/slides/', $slides[$i]['ruta']; ?>"><span><p><?php echo $slides[$i]['descripcion']; ?></p></span></li>
+        <?php endfor; ?>
+    </ul>
+</div>
+<?php endif; ?>    

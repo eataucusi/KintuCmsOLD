@@ -1,0 +1,39 @@
+<article>
+    <h1><?php echo $this->titulo ?></h1>
+    <h2>Artículos más leidos</h2>
+    <?php if ($this->articulos) : ?>
+    <table>
+        <tr>
+            <th>artículo</th><th>visitas</th><th>publicador</th><th>categoría</th
+        </tr>
+        <?php for ($i = 0; $i < count($this->articulos); $i++) : ?>
+        <tr>
+            <td><a href="<?php echo URL_BASE, 'articulo/ver/',$this->articulos[$i]['nombre'], ADMIN ?>"><?php echo $this->articulos[$i]['titulo'] ?></a></td>
+            <td><?php echo $this->articulos[$i]['leido'] ?></td>
+            <td><?php echo $this->articulos[$i]['login'] ?></td>
+            <td><?php echo $this->articulos[$i]['categoria'] ?></td>
+        </tr>
+        <?php endfor; ?>
+    </table>
+    <?php else: ?>
+    No hay artículos.
+    <?php endif; ?>    
+    <h2>Últimos comentarios</h2>
+    <?php if ($this->comentarios) : ?>
+    <table>
+        <tr>
+            <th>usuario</th><th>comentario</th><th>fecha</th><th>artículo</th>
+        </tr>
+        <?php for ($i = 0; $i < count($this->comentarios); $i++) : ?>
+        <tr>
+            <td><?php echo $this->comentarios[$i]['login'] ?></td>
+            <td><?php echo $this->comentarios[$i]['comentario'] ?></td>
+            <td><?php echo $this->comentarios[$i]['fecha'] ?></td>
+            <td><a href="<?php echo URL_BASE, 'articulo/ver/',$this->comentarios[$i]['nombre'], ADMIN ?>"><?php echo $this->comentarios[$i]['titulo'] ?></a></td>
+        </tr>
+        <?php endfor; ?>
+    </table>
+    <?php else: ?>
+    No hay comentarios.
+    <?php endif; ?>
+</article>

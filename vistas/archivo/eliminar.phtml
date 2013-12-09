@@ -1,0 +1,15 @@
+<article>                   
+    <form method="post" action="" class="form">
+        <h1><?php echo $this->titulo; ?></h1>
+        <input type="hidden" name="guardar" value="1">
+        <ul>
+            <li>
+                <label>Descripción</label>
+                <output class="in"><?php echo $this->datos['descripcion']; ?></output>
+            </li>
+            <li>
+                <input type="submit" class="submit" value="Confirmar"><a class="atras" href="<?php echo URL_BASE, 'archivo/listar', ADMIN ?>">Cancelar</a>
+            </li>
+        </ul>    
+    </form>
+</article>

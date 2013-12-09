@@ -1,0 +1,106 @@
+<article>
+    <h1><?php echo $this->titulo ?></h1>
+    <div class="publicador">
+        <span class="autor">
+            Publicado por <a><?php echo $this->datos['login'] ?></a> en <a href="<?php echo URL_BASE, 'articulo/categoria/', $this->datos['nombre'], ADMIN ?>"><?php echo $this->datos['categoria'] ?></a>
+            <time datetime="<?php echo $this->datos['creado'] ?>">. El día <?php echo $this->datos['fecha'] ?></time>
+        </span>
+    </div>
+    <div class="impacto">
+        <table style="margin: 0 auto">
+            <tr>
+                <td><a title="Ver comentarios" class="ancla" href="#comentarios">Comentarios (<?php echo $this->ncoment == 0 ? '0' : $this->ncoment; ?>)</a></td>
+                <td><span>|</span></td>
+                <td>Visto <?php echo $this->datos['leido'] ?> Veces</td>
+                <td><span>|</span></td>
+                <td>
+                    <a title="Compartir en Facebook" class="fb-comp" href="https://www.facebook.com/sharer/sharer.php?u=<?php echo URL_BASE, $_GET['url'] ?>" target="_blank"><img src="<?php echo $this->rutaPublico ?>img/app/fb.png"></a> 
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="articulo">
+        <div class="introduccion">
+            <?php echo $this->datos['resumen'] ?>
+        </div>
+        <div>
+            <?php echo $this->datos['cuerpo'] ?>
+        </div>
+    </div>    
+    <div class="impacto">
+        <table style="margin: 0 auto">
+            <tr>
+                <td><a title="Ver comentarios" class="ancla" href="#comentarios">Comentarios (<?php echo $this->ncoment == 0 ? '0' : $this->ncoment; ?>)</a></td>
+                <td><span>|</span></td>
+                <td>Visto <?php echo $this->datos['leido'] ?> Veces</td>
+                <td><span>|</span></td>
+                <td>
+                    <a title="Compartir en Facebook" class="fb-comp" href="https://www.facebook.com/sharer/sharer.php?u=<?php echo URL_BASE, $_GET['url'] ?>" target="_blank"><img src="<?php echo $this->rutaPublico ?>img/app/fb.png"></a> 
+                </td>
+            </tr>
+        </table>
+    </div>
+</article>
+<div id="comentarios">
+    <h3><span>Comentarios (<?php echo $this->ncoment == 0 ? '0' : $this->ncoment; ?>)</span></h3>
+    <div class="comentario">  
+        <form method="post" action="<?php echo URL_BASE, 'comentario/comentar/', $this->articulo_id, ADMIN ?>" class="form">
+            <?php if (Sesion::get('msj')) : ?>
+                <div class="error">
+                    <img alt="img" src="<?php echo $this->rutaPublico ?>img/app/error.png">
+                    <span>Se ha detectado los siguientes errores:</span>
+                    <br>
+                    <?php echo Sesion::get('msj');
+                    Sesion::matar('msj');
+                    ?>
+                </div>
+            <?php endif; ?>
+<?php if (Sesion::get('autenticado')) : ?>
+                <input type="hidden" name="guardar" value="1">
+                <ul>
+                    <li>
+                        <label for="coment">Comentario:</label>
+                        <textarea id="coment" name="coment" rows="4" required placeholder="Escribe tu Comentario!"></textarea>
+                    </li>
+                    <li>
+                        <input type="submit" class="submit" value="Comentar">
+                    </li>
+                </ul>            
+<?php else: ?>
+                <p><a href="<?php echo URL_BASE; ?>cuenta/login">Inicie sesion para comentar.</a></p>
+                <p>Y si aún no estas regiatrado, regístrate, como usuario registrado podrás:</p>
+                <ul>
+                    <li>* Escribir comentarios</li>
+                    <li>* Configurar tu imagen</li>
+                    <li>* Enviar noticias con tu nombre</li>
+                    <li>* Otras cosas interesantes...</li>
+                </ul>
+                <p><a href="<?php echo URL_BASE; ?>cuenta/nuevo">Regístrate ahora! es gratis!</a>, nosotros no venderemos/daremos tus datos a otras personas/empresas.</p>
+<?php endif; ?>
+        </form>
+    </div>
+    <?php if ($this->comentarios) : ?>
+    <?php for ($i = 0; $i < count($this->comentarios); $i++) : ?>
+            <div class="comentario">        
+                <div class="img_comentario">
+                    <img src="<?php echo $this->rutaPublico, 'img/usuarios/', $this->comentarios[$i]['foto'] ?>">
+                </div>
+                <div class="der_comentario">
+                    <p> 
+                        <a href="#"><?php echo $this->comentarios[$i]['login']; ?></a>
+                        <time datetime="<?php echo $this->comentarios[$i]['creado'] ?>">. El día <?php echo $this->comentarios[$i]['fecha'] ?></time>
+                    </p>
+                    <p><?php echo $this->comentarios[$i]['comentario'] ?></p>
+                </div>
+                <div>
+                    <?php if (Sesion::get('nivel') == 4 || Sesion::get('login') == $this->comentarios[$i]['login'] || Sesion::get('login') == $this->datos['login']) : ?>
+                        <a href="<?php echo URL_BASE, 'comentario/eliminar/', $this->comentarios[$i]['id'], ADMIN ?>">Eliminar comentario</a>
+        <?php endif; ?>
+                </div>
+            </div>
+        <?php endfor; ?>
+    <?php else: ?>
+        <p>No hay Comentarios..</p>
+    <?php endif; ?>
+<?php require RAIZ . 'vistas/_utilidades/paginador.phtml'; ?>
+</div>

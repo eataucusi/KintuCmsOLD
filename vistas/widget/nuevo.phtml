@@ -1,0 +1,46 @@
+<article>                   
+    <form method="post" action="" class="form">
+        <h1><?php echo $this->titulo ?></h1>
+        <?php if (isset($this->error)) : ?>
+            <div class="error">
+                <img alt="img" src="<?php echo $this->rutaPublico ?>img/app/error.png">
+                <span>Se ha detectado los siguientes errores:</span>
+                <?php for ($i = 0; $i < count($this->error); $i++) : ?>
+                    <?php echo '<br>', $i + 1, '. ', $this->error[$i]; ?>
+                <?php endfor; ?>
+            </div>
+        <?php endif; ?>
+        <input type="hidden" name="guardar" value="1">
+        <ul>              
+            <li>
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" placeholder="Requerido" required class="in"
+                       value="<?php if (isset($this->datos['nombre'])) echo $this->datos['nombre']; ?>"
+                       pattern="^[a-z0-9_\-]{4,70}$" title="Utiliza sólo letras (a-z), guíon, subguión y números, de 6 a 70 caracteres">                        
+            </li> 
+            <li>
+                <label for="titulo">Título:</label>
+                <input type="text" id="titulo" name="titulo" placeholder="Ninguno" optional class="in"
+                       value="<?php echo (isset($this->datos['titulo'])) ? $this->datos['titulo'] : 'Ninguno' ?>">
+            </li>
+            <li>
+                <label for="cuerpoA">Cuerpo:</label>
+                <textarea id="cuerpoA" name="cuerpo" rows="15" placeholder="Requerido"> <?php if (isset($this->datos['cuerpo'])) echo $this->datos['cuerpo']; ?></textarea>
+            </li>                   
+            <li>
+                <label for="visible">Estado:</label>
+                <select id="visible" name="visible" required>
+                    <option value="2" <?php if (isset($this->datos['visible']) && $this->datos['visible'] == 2) echo ' selected'; ?>>Habilitado</option>  
+                    <option value="1" <?php if (isset($this->datos['visible']) && $this->datos['visible'] == 1) echo ' selected'; ?>>Deshabilitado</option> 
+                </select>
+            </li>
+            <li>
+                <label for="peso">Peso:</label>
+                <input type="text" id="peso" name="peso" class="in" placeholder="Requerido" required value="<?php echo (isset($this->datos['peso'])) ? $this->datos['peso'] : '1'; ?>"> 
+            </li>
+            <li>
+                <input type="submit" class="submit" value="Guardar">
+            </li>
+        </ul> 
+    </form>
+</article>

@@ -1,0 +1,28 @@
+<article>
+    <form method="post" action="" class="form" enctype="multipart/form-data">
+        <h1><?php echo $this->titulo; ?></h1>
+        <?php if (isset($this->error)) : ?>
+            <div class="error">
+                <img alt="img" src="<?php echo $this->plantilla; ?>img/error.png">
+                <span>Se ha detectado los siguientes errores:</span>
+                <?php for ($i = 0; $i < count($this->error); $i++) : ?>
+                    <?php echo '<br>', $i + 1, '. ', $this->error[$i]; ?>
+                <?php endfor; ?>
+            </div>
+        <?php endif; ?>
+        <input type="hidden" name="guardar" value="1">
+        <ul>              
+            <li>
+                <label for="descripcion">Descripción de  la imagen:</label>
+                <input type="text" id="descripcion" name="descripcion" class="in largo" placeholder="Requerido" required value="<?php if (isset($this->datos['descripcion'])) echo $this->datos['descripcion']; ?>">
+            </li>
+            <li>
+                <label for="img">Imagen (900x200):</label>
+                <input type="file" id="img" name="img" class="in" accept="image/jpeg,image/png,image/gif" required>
+            </li>             
+            <li>
+                <input type="submit" class="submit" value="Guardar">
+            </li>
+        </ul> 
+    </form>
+</article>

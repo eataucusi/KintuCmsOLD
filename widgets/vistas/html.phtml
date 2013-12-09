@@ -1,0 +1,10 @@
+<div class="widget <?php echo $nombre ?>">
+    <?php if (isset($titulo)): ?>
+    <h3><?php echo $titulo ?></h3>
+    <?php endif; ?>
+    <div class="cuerpo_widget">
+        <?php if (isset($cuerpo)): ?>
+            <?php echo $cuerpo ?>
+        <?php endif; ?>
+    </div>
+</div>

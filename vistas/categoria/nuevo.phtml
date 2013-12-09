@@ -1,0 +1,52 @@
+<article>                   
+    <form method="post" action="" class="form" enctype="multipart/form-data">
+        <h1><?php echo $this->titulo; ?></h1>
+        <?php if (isset($this->error)) : ?>
+            <div class="error">
+                <img alt="img" src="<?php echo $this->rutaPublico ?>img/app/error.png">
+                <span>Se ha detectado los siguientes errores:</span>
+                <?php for ($i = 0; $i < count($this->error); $i++) : ?>
+                    <?php echo '<br>', $i + 1, '. ', $this->error[$i]; ?>
+                <?php endfor; ?>
+            </div>
+        <?php endif; ?>
+        <input type="hidden" name="guardar" value="1">
+        <ul>
+            <li>
+                <label for="categoria">Categoría:</label>
+                <input type="text" id="categoria" name="categoria" class="in" placeholder="Requerido" required
+                       value="<?php if (isset($this->datos['categoria'])) echo $this->datos['categoria']; ?>">
+            </li>
+            <li>
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" class="in" placeholder="Requerido" required
+                       value="<?php if (isset($this->datos['nombre'])) echo $this->datos['nombre']; ?>"
+                       pattern="^[a-z0-9_\-]{6,50}$" title="Utiliza sólo letras (a-z), guíon, subguión y números, de 6 a 50 caracteres">
+            </li>
+            <li>
+                <label for="detalle">Detalle:</label>
+                <input type="text" id="detalle" name="detalle" class="in largo" placeholder="Requerido" required
+                       value="<?php if (isset($this->datos['detalle'])) echo $this->datos['detalle']; ?>">
+            </li>
+            <li>
+                <label for="img">Imagen:</label>
+                <input type="file" id="img" name="img" class="in" accept="image/jpeg,image/png,image/gif" required>
+            </li> 
+            <li>
+                <label for="padre">Es hijo de:</label>
+                <select id="padre" name="padre" optional>
+                    <option value="ninguno">Ninguno</option>
+                    <?php for ($i = 0; $i < count($this->padre); $i++) : ?>
+                        <option value="<?php echo $this->padre[$i]['id']; ?>"
+                                <?php if (isset($this->datos['padre']) && $this->datos['padre'] == $this->padre[$i]['id']) echo 'selected'; ?>>
+                                    <?php echo $this->padre[$i]['texto']; ?>
+                        </option>
+                    <?php endfor; ?>
+                </select>
+            </li>
+            <li>
+                <input type="submit" class="submit" value="Guardar">
+            </li>
+        </ul> 
+    </form>
+</article>

@@ -1,0 +1,83 @@
+<article>                   
+    <form method="post" action="" class="form" enctype="multipart/form-data">
+        <h1><?php echo $this->titulo; ?></h1>
+        <?php if (isset($this->error)) : ?>
+            <div class="error">
+                <img alt="img" src="<?php echo $this->rutaPublico ?>img/app/error.png">
+                <span>Se ha detectado los siguientes errores:</span>
+                <?php for ($i = 0; $i < count($this->error); $i++) : ?>
+                    <?php echo '<br>', $i + 1, '. ', $this->error[$i]; ?>
+                <?php endfor; ?>
+            </div>
+        <?php endif; ?>
+        <input type="hidden" name="guardar" value="1">
+        <ul>              
+            <li>
+                <label for="nombre">Nombre completo:</label>
+                <input type="text" id="nombre" name="nombre" class="in" placeholder="Requerido" required
+                       value="<?php if (isset($this->datos['nombre'])) echo $this->datos['nombre']; ?>"
+                       pattern="^[a-zñáéíóú ]{15,}$" title="Utiliza solo letras, 15 caracteres como mínimo">
+            </li>
+            <li>
+                <label for="login">Login:</label>
+                <input type="text" id="login" name="login" class="in" placeholder="Requerido" required
+                       value="<?php if (isset($this->datos['login'])) echo $this->datos['login']; ?>"
+                       pattern="^[a-z0-9_\-]{6,}$" title="Utiliza sólo letras (a-z), guíon, subguión y números, 6 caracteres como mínimo">
+            </li>                    
+            <li>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" class="in" placeholder="Requerido" required
+                       value="<?php if (isset($this->datos['email'])) echo $this->datos['email']; ?>"
+                       pattern="^[a-z0-9_\-\.]+@[a-z0-9_\-\.]+\.[a-z]{2,4}$" title="Escribe tu email">
+            </li>
+            <li>
+                <label for="new-pass">Contraseña:</label>
+                <input type="password" id="new-pass" name="new-pass" class="in"
+                       value="<?php if (isset($this->datos['new-pass'])) echo $this->datos['new-pass']; ?>"
+                       pattern="^.{6,}" title="Utiliza 6 caracteres como mínimo, las contraseñas cortas son fáciles de adivinar">
+                <span>* Si no desea cambiar <strong>contraseña</strong> deje vacío este campo.</span>
+            </li>
+            <li>
+                <label for="new-repass">Repite contraseña:</label>
+                <input type="password" id="new-repass" name="new-repass" class="in"
+                       value="<?php if (isset($this->datos['new-repass'])) echo $this->datos['new-repass']; ?>"
+                       pattern="^.{6,}" title="Utiliza 6 caracteres como mínimo, las contraseñas cortas son fáciles de adivinar">
+                <span>* Si no desea cambiar <strong>contraseña</strong> deje vacío este campo.</span>
+            </li>
+            <li>
+                <label>Imagen:</label>
+                <input type="hidden" id="foto" name="foto" value="<?php echo $this->datos['foto']; ?>">
+                <img alt="img" src="<?php echo $this->rutaPublico, 'img/usuarios/', $this->datos['foto']; ?>">                    
+            </li>
+            <li>                    
+                <label for="new-foto">Nueva Imagen:</label>
+                <input type="file" id="new-foto" name="new-foto" class="in" accept="image/jpeg,image/png,image/gif" optional>
+                <span>* Si no desea cambiar <strong>imagen</strong> deje vacío este campo.</span>
+            </li> 
+            <li>
+                <label for="acerca">Acerca de mí:</label>
+                <textarea id="acerca" name="acerca" required rows="2"><?php if (isset($this->datos['acerca'])) echo $this->datos['acerca']; ?></textarea>
+            </li>
+            <li>
+                <label for="rol">Rol:</label>
+                <select id="rol" name="rol" required>
+                    <?php for ($i = 0; $i < count($this->rol); $i++) : ?>
+                        <option value="<?php echo $this->rol[$i]['id']; ?>"<?php if ($this->datos['role_id'] == $this->rol[$i]['id']) echo ' selected'; ?>>
+                            <?php echo $this->rol[$i]['rol']; ?>
+                        </option>
+                    <?php endfor; ?>
+                </select>
+            </li>
+            <li>
+                <label for="estado">Estado:</label>
+                <select id="estado" name="estado" required>
+                    <option value="2" <?php if ($this->datos['estado'] == 2) echo ' selected'; ?>>Habilitado</option>  
+                    <option value="1" <?php if ($this->datos['estado'] == 1) echo ' selected'; ?>>Deshabilitado</option> 
+                </select>
+            </li>
+            <li>
+                <input type="submit" class="submit" value="Guardar"><a class="atras" href="<?php echo URL_BASE, 'usuario/listar', ADMIN ?>">Cancelar</a>
+            </li>
+        </ul> 
+    </form>
+</article>

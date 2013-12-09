@@ -1,0 +1,44 @@
+<article>
+    <h1><?php echo $this->titulo ?></h1>  
+    <?php if (Sesion::get('msj')) : ?>
+        <div class="correcto">
+            <img alt="img" src="<?php echo $this->rutaPublico ?>img/app/correcto.png"> 
+            <?php
+            echo Sesion::get('msj');
+            Sesion::matar('msj');
+            ?>
+        </div>
+    <?php endif; ?>
+    <p><a href="<?php echo URL_BASE, 'plantilla/nuevo', ADMIN ?>" class="add"><img alt="img" src="<?php echo $this->rutaPublico ?>img/app/add.png"> Instalar plantilla</a></p>
+    <?php if ($this->datos) : ?>
+        <table class="table">
+            <tr>
+                <th>nombre</th><th>para</th><th>defecto</th><th colspan="2">operaciones</th>                 
+            </tr>
+            <?php for ($i = 0; $i < count($this->datos); $i++) : ?>
+                <tr>
+                    <td><?php echo $this->datos[$i]['nombre'] ?></td>
+                    <td><?php echo $this->datos[$i]['para'] ?></td>
+                    <td>
+                        <?php if ($this->datos[$i]['defecto'] == 1) : ?>
+                            <a href="<?php echo URL_BASE, 'plantilla/defecto/', $this->datos[$i]['id'], ADMIN  ?>">Establecer por defecto</a>
+                        <?php else : ?>
+                            Por defecto
+                        <?php endif; ?>
+                    </td>
+                    <td><a href="<?php echo URL_BASE, 'plantilla/asignar/', $this->datos[$i]['id'], ADMIN ?>">Asignar Widgets</a></td>
+                    <td>
+                        <?php if ($this->datos[$i]['defecto'] == 1) : ?>
+                            <a href="<?php echo URL_BASE, 'plantilla/eliminar/', $this->datos[$i]['id'], ADMIN  ?>">Eliminar</a>
+                        <?php else : ?>
+                            ...
+                        <?php endif; ?>
+                    </td>
+                </tr>
+            <?php endfor; ?>
+        </table>
+        <?php require RAIZ . 'vistas' . SD . '_utilidades' . SD . 'paginador.phtml' ?>
+    <?php else : ?>
+        <p>Esta categoría no tiene articulos.</p>
+    <?php endif; ?>            
+</article>

@@ -1,0 +1,21 @@
+<article>
+    <h1><?php echo $this->titulo; ?></h1>
+    <p><a href="<?php echo URL_BASE, 'slider/nuevo', ADMIN ?>" class="add"><img alt="img" src="<?php echo $this->rutaPublico ?>img/app/add.png"> Agregar nueva imagen</a></p>
+    <?php if ($this->slider) : ?>
+        <table class="table">
+            <tr>
+                <th>imagen</th><th>operaciones</th>
+            </tr>
+            <?php for ($i = 0; $i < count($this->slider); $i++) : ?>
+                <tr>
+                    <td>
+                        <img src="<?php echo $this->rutaPublico, 'img/slides/', $this->slider[$i]['ruta']; ?>" width="700" title="<?php echo $this->slider[$i]['descripcion']; ?>">
+                    </td>
+                    <td><a href="<?php echo URL_BASE, 'slider/eliminar/', $this->slider[$i]['id'], ADMIN ?>">Eliminar</a></td>
+                </tr>
+            <?php endfor; ?>
+        </table>
+    <?php else : ?>
+        <p>No se encontró resultados.</p>
+    <?php endif; ?>
+</article>

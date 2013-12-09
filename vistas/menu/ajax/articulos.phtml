@@ -1,0 +1,8 @@
+<h2>Elija un Artículo</h2>
+<ul>
+    <?php for ($i = 0; $i < count($this->datos); $i++) : ?>
+    <li><a href="articulo/ver/<?php echo $this->datos[$i]['nombre'] ?>/1" class="click">Enlace al artículo "<?php echo $this->datos[$i]['nombre'] ?>"</a></li>
+    <?php endfor; ?>   
+</ul>
+<?php require RAIZ . 'vistas' . SD . '_utilidades' . SD .'paginador.phtml' ?>
+<p>Click fuera del cuadro blanco para salir</p>

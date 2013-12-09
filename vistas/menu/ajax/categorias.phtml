@@ -1,0 +1,7 @@
+<h2>Elija una categoría</h2>
+<ul>
+    <?php for ($i = 0; $i < count($this->datos); $i++) : ?>
+    <li><a href="articulo/categoria/<?php echo $this->datos[$i]['nombre'] ?>/1" class="click">Enlace a la categoría "<?php echo $this->datos[$i]['nombre'] ?>"</a></li>
+    <?php endfor; ?>   
+</ul>
+<p>Click fuera del cuadro blanco para salir</p>

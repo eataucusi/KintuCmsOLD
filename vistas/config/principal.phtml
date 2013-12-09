@@ -1,0 +1,35 @@
+<article>                   
+    <form method="post" action="" class="form">
+        <h1><?php echo $this->titulo; ?></h1>
+        <?php if (isset($this->error)) : ?>
+            <div class="error">
+                <img alt="img" src="<?php echo $this->rutaPublico ?>img/app/error.png">
+                <span>Se ha detectado los siguientes errores:</span>
+                <?php for ($i = 0; $i < count($this->error); $i++) : ?>
+                    <?php echo '<br>', $i + 1, '. ', $this->error[$i]; ?>
+                <?php endfor; ?>
+            </div>
+        <?php endif; ?>
+        <?php if (Sesion::get('msj')) : ?>
+            <div class="correcto">
+                <img alt="img" src="<?php echo $this->rutaPublico ?>img/app/correcto.png"> 
+                <?php
+                echo Sesion::get('msj');
+                Sesion::set('msj', '');
+                ?>
+            </div>
+        <?php endif; ?>
+        <input type="hidden" name="guardar" value="1">
+        <ul>
+            <li>El enlace que elija, se mostrará en la página principal de su sitio.</li>
+            <li>
+                <label for="url">Url:</label>
+                <input type="text" id="url" name="url" class="in" placeholder="Requerido" required value="<?php if (isset($this->datos)) echo $this->datos; ?>">
+                <a href="menu/enlaces" class="elegirUrl">Elegir</a>                
+            </li>
+            <li>
+                <input type="submit" class="submit" value="Guardar"><a class="atras" href="<?php echo URL_BASE, 'config', ADMIN ?>">Cancelar</a>
+            </li>
+        </ul> 
+    </form>
+</article>

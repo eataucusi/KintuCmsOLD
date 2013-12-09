@@ -1,0 +1,43 @@
+<article>
+    <h1><?php echo $this->titulo ?></h1>  
+    <?php if (Sesion::get('msj')) : ?>
+        <div class="correcto">
+            <img alt="img" src="<?php echo $this->rutaPublico ?>img/app/correcto.png"> 
+            <?php
+            echo Sesion::get('msj');
+            Sesion::matar('msj');
+            ?>
+        </div>
+    <?php endif; ?> 
+    <form method="post" action="" class="form">
+        <input type="hidden" name="guardar" value="1">
+        <table class="table">
+            <tr>
+                <th>widget</th><th>posición</th>                 
+            </tr>
+            <?php for ($i = 0; $i < count($this->widgets); $i++): ?>
+                <tr>
+                    <td><?php echo $this->widgets[$i]['nombre'] ?></td>
+                    <td>
+                        <select name="<?php echo $this->widgets[$i]['nombre'] ?>">
+                            <option value="">Ninguno</option>
+                            <?php for ($j = 0; $j < count($this->posiciones); $j++): ?>
+                                <?php if ($this->widgets[$i]['pos'] == $this->posiciones[$j]['id']) : ?>
+                                    <option value="<?php echo $this->posiciones[$j]['id'] ?>" selected=""><?php echo $this->posiciones[$j]['nombre'] ?></option>
+                                <?php else : ?>
+                                    <option value="<?php echo $this->posiciones[$j]['id'] ?>"><?php echo $this->posiciones[$j]['nombre'] ?></option>
+                                <?php endif; ?>                                
+                            <?php endfor; ?>
+                        </select>                        
+                    </td>
+                </tr>
+            <?php endfor; ?>
+        </table>
+        <ul>
+            <li>
+                <input type="submit" class="submit" value="Guardar"><a href="<?php echo URL_BASE, 'plantilla/listar', ADMIN ?>" class="add">Listar plantillas</a>
+            </li>
+        </ul> 
+    </form>
+
+</article>

@@ -1,0 +1,41 @@
+<ul>
+    <?php if (Sesion::accesoVista('Publicador') && !ES_ADMIN): ?>
+        <li>
+            <a href="<?php echo URL_BASE ?>?admin" title="Gestionar Sitio" target="_blank">
+                <img alt="img" src="<?php echo URL_BASE ?>publico/img/widget/config.png">
+            </a>
+        </li>
+    <?php endif; ?>
+    <?php if (Sesion::accesoVista('Publicador') && ES_ADMIN): ?>
+        <li>
+            <a href="<?php echo URL_BASE ?>" title="Ver sitio" target="_blank">
+                <img alt="img" src="<?php echo URL_BASE ?>publico/img/widget/preview.png">
+            </a>
+        </li>
+    <?php endif; ?>
+    <?php if (Sesion::get('autenticado')): ?>
+        <li id="mi-perfil">
+            <a href="<?php echo URL_BASE, 'cuenta', ADMIN ?>" title="<?php echo Sesion::get('login') ?>">
+                <img alt="img" src="<?php echo URL_BASE ?>publico/img/widget/user.png">
+            </a>
+            <div class="alert" style="display: none;">
+                <div class="alertup"><div class="alertup1"></div></div>
+                <div class="alerttxt">
+                    <img title="Mi perfil" src="<?php echo URL_BASE ?>publico/img/usuarios/<?php echo Sesion::get('foto') ?>">
+                    <div class="mi-perfil-op">
+                        <h5><?php echo Sesion::get('login') ?></h5>
+                        <a href="<?php echo URL_BASE, 'cuenta', ADMIN ?>">Mi perfil</a>
+                        <a href="<?php echo URL_BASE ?>cuenta/salir">Salir</a>
+                    </div>
+                    <p class="clear"></p>
+                </div>
+            </div>
+        </li>
+    <?php else: ?>
+        <li>
+            <a href="<?php echo URL_BASE ?>cuenta/login" title="Iniciar Sesion">
+                <img alt="img" src="<?php echo URL_BASE ?>publico/img/widget/user.png">
+            </a>
+        </li>
+    <?php endif; ?>
+</ul>

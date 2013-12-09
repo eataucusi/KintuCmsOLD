@@ -1,0 +1,52 @@
+<article>
+    <h1><?php echo $this->titulo; ?></h1>  
+    <?php if (Sesion::get('msj')) : ?>
+        <div class="correcto">
+            <img alt="img" src="<?php echo $this->rutaPublico ?>img/app/correcto.png"> 
+            <?php
+            echo Sesion::get('msj');
+            Sesion::set('msj', '');
+            ?>
+        </div>
+    <?php endif; ?>
+    <p><a href="<?php echo URL_BASE, 'categoria/nuevo', ADMIN ?>" class="add"><img alt="img" src="<?php echo $this->rutaPublico ?>img/app/add.png"> Añadir Categoria</a></p>
+    <?php if ($this->categorias) : ?>
+        <table class="table">
+            <tr>
+                <th>categoria</th><th colspan="2">operaciones</th>                 
+            </tr>
+
+            <?php $_menu = $this->categorias; ?>              
+            <?php for ($i = 0; $i < count($_menu); $i++): ?>
+                <tr>
+                    <td><span><?php echo $_menu[$i]['menu']['categoria']; ?></span></td>               
+                    <td><a href="<?php echo URL_BASE, 'categoria/editar/', $_menu[$i]['menu']['id'], ADMIN ?>">Editar</a></td>
+                    <td><a href="<?php echo URL_BASE, 'categoria/eliminar/', $_menu[$i]['menu']['id'], ADMIN ?>">Eliminar</a></td>
+                </tr>
+                <?php if ($_menu[$i]['submenu']): ?>
+                    <?php $_smenu = $_menu[$i]['submenu']; ?>
+                    <?php for ($j = 0; $j < count($_smenu); $j++): ?>
+                        <tr>
+                            <td><span class="tab"></span><span><?php echo $_smenu[$j]['menu']['categoria']; ?></span></td>                                
+                            <td><a href="<?php echo URL_BASE, 'categoria/editar/', $_smenu[$j]['menu']['id'], ADMIN ?>">Editar</a></td>
+                            <td><a href="<?php echo URL_BASE, 'categoria/eliminar/', $_smenu[$j]['menu']['id'], ADMIN ?>">Eliminar</a></td>
+                        </tr>
+                        <?php if ($_smenu[$j]['submenu']): ?>
+                            <?php $_ssmenu = $_smenu[$j]['submenu']; ?>                  
+                            <?php for ($k = 0; $k < count($_ssmenu); $k++): ?>
+                                <tr>
+                                    <td><span class="tab"></span><span class="tab"></span><span><?php echo $_ssmenu[$k]['categoria']; ?></span></td>                                                
+                                    <td><a href="<?php echo URL_BASE, 'categoria/editar/', $_ssmenu[$k]['id'],ADMIN ?>">Editar</a></td>
+                                    <td><a href="<?php echo URL_BASE, 'categoria/eliminar/', $_ssmenu[$k]['id'], ADMIN ?>">Eliminar</a></td>
+                                </tr>
+                            <?php endfor; ?> 
+                        <?php endif; ?>
+                    <?php endfor; ?>
+                <?php endif; ?>   
+            <?php endfor; ?>
+
+        </table>
+    <?php else : ?>
+        <p>No se encontró resultados.</p>
+    <?php endif; ?>            
+</article>

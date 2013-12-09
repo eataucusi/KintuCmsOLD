@@ -1,0 +1,33 @@
+<?php $tam = count($this->datos); ?>
+<?php if ($tam >= 1) : ?>
+    <?php  for ($i = 0; $i < $tam; $i++) : ?>
+        <article>
+            <h2><a href="<?php echo URL_BASE, 'articulo/ver/', $this->datos[$i]['nombre'] ?>"><?php echo $this->datos[$i]['titulo'] ?></a></h2>
+            <div class="publicador">
+                <span class="autor">
+                    Publicado por <a><?php echo $this->datos[$i]['login'] ?></a> en <b><?php echo $this->datos[$i]['categoria'] ?></b>
+                    <time datetime="<?php echo $this->datos[$i]['creado'] ?>">. El día <?php echo $this->datos[$i]['fecha'] ?></time>
+                </span>
+            </div>
+            <div class="introduccion" style="overflow: hidden">
+                <?php echo $this->datos[$i]['resumen'] ?>
+            </div>
+            <div class="impacto">
+                <table style="margin: 0 auto">
+                    <tr>
+                        <td><a title="Leer Artículo Completo" href="<?php echo URL_BASE, 'articulo/ver/', $this->datos[$i]['nombre'], ADMIN ?>">Leer más ...</a></td>
+                        <td><span>|</span></td>
+                        <td><a title="Ver comentarios" href="<?php echo URL_BASE, 'articulo/ver/', $this->datos[$i]['nombre'], ADMIN ?>#comentarios">Comentarios (<?php echo ($this->datos[$i]['ncom'] == 0) ? '0' : $this->datos[$i]['ncom'] ?>)</a></td>
+                        <td><span>|</span></td>
+                        <td>Visto <?php echo $this->datos[$i]['leido'] ?> veces</td>
+                    </tr>
+                </table>
+            </div>
+        </article>
+    <?php endfor; ?>
+    <?php require RAIZ . SD . 'vistas' . SD . '_utilidades' . SD . 'paginador.phtml'; ?>
+<?php else: ?>
+    <article>
+        Esta categoría no tiene artículos.
+    </article>
+<?php endif; 

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Insertar código</title>
+        <meta lang="es" charset="utf-8"> 
+        <base href="<?php echo URL_BASE ?>">
+        <script type="text/javascript" src="<?php echo $this->rutaPublico ?>js/jquery-1.8.2.js"></script>
+        <script type="text/javascript" src="<?php echo $this->rutaPublico ?>js/tinymce/jscripts/tiny_mce/tiny_mce_popup.js"></script>
+	<script type="text/javascript" src="<?php echo $this->rutaPublico ?>js/tinymce/jscripts/tiny_mce/plugins/precode/js/dialog.js"></script>
+        <link rel="stylesheet" href="<?php echo $this->rutaPublico ?>css/pop_up.css" media="all" type="text/css">
+        <script type="text/javascript">
+            $(function(){
+                String.prototype.htmlEntities = function () {
+                    return this.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+                }
+                
+                $('#insert').click(function(){
+                    var html = $('#pre_code').val();
+                    $('#pre_code').val(html.htmlEntities());
+                    $('form').submit();
+                })
+            })
+        </script>
+</head>
+<body>
+    <h1>Gestor de Código - KintuCms</h1>
+    <br>
+    <form action="" class="form" onsubmit="PrecodeDialog.insert();return false;">        
+        <ul>              
+            <li>
+                <label for="pre_code">Código:</label>
+                <textarea id="pre_code" name="pre_code" rows="10"></textarea>
+            </li>             
+            <li>
+                <input type="button" id="insert" name="insert" value="Insertar" class="submit">
+                <input type="button" id="cancel" name="cancel" value="Cancelar" onclick="tinyMCEPopup.close();" class="submit">
+            </li>
+        </ul> 
+    </form>
+</body>
+</html>

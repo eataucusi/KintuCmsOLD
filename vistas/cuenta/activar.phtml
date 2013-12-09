@@ -1,0 +1,19 @@
+<article>
+    <h1><?php echo $this->titulo; ?></h1>
+    <?php if (isset($this->msj)) : ?>
+        <div class="correcto">
+            <img alt="img" src="<?php echo $this->rutaPublico; ?>img/app/correcto.png"> 
+            <?php echo $this->msj; ?>            
+        </div>
+        <div class="soc_articulo">
+            <a href="<?php echo URL_BASE; ?>">Ir a la pagina de inicio</a><span>|</span><a href="<?php echo URL_BASE; ?>cuenta/login">Iniciar sesión</a>
+        </div>
+    <?php endif; ?>
+    <?php if (isset($this->error)) : ?>
+        <div class="error">
+            <img alt="img" src="<?php echo $this->rutaPublico ?>img/app/error.png">
+            <span>Se ha detectado los siguientes errores:</span><br>
+            <p><?php echo $this->error; ?></p>
+        </div>
+    <?php endif; ?>
+</article>

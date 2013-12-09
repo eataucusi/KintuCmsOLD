@@ -1,0 +1,14 @@
+<article>  
+    <p class="traspie"><img alt="img" src="<?php echo $this->rutaPublico; ?>img/app/error.jpg"></p>
+    <h1>        
+        <?php echo $this->titulo; ?>
+    </h1>
+    <h3><?php echo $this->msj ?></h3>
+    <div class="soc_articulo">
+        <a href="<?php echo URL_BASE, ADMIN ?>">Ir al inicio</a>
+        <?php if (!Sesion::get('autenticado')) : ?>
+            <span>|</span><a href="<?php echo URL_BASE; ?>cuenta/login">Iniciar sesión</a>
+        <?php endif; ?>
+        <span>|</span> <a class="atras" href="<?php echo URL_BASE, ADMIN ?>">Volver a la página anterior</a>
+    </div>
+</article>

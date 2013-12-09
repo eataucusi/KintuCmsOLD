@@ -1,0 +1,9 @@
+<a href="<?php echo URL_BASE, ADMIN ?>">Inicio</a>
+<?php if ($peticion->getControlador() != 'index') : ?>
+    <span>&gt;</span>
+    <a href="<?php echo URL_BASE, $peticion->getControlador(), ADMIN ?>"><?php echo $peticion->getControlador() ?></a>
+    <?php if ($peticion->getMetodo() != 'index') : ?>
+        <span>&gt;</span>
+        <a href="<?php echo URL_BASE, $peticion->getControlador(), '/', $peticion->getMetodo(), ADMIN ?>"><?php echo $peticion->getMetodo() ?></a>    
+    <?php endif; ?>
+<?php endif; ?>

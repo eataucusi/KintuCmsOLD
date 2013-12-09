@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Imagenes</title>
+        <meta lang="es" charset="utf-8">    
+        <link rel="stylesheet" href="<?php echo $this->rutaPublico; ?>css/pop_up.css" media="all" type="text/css">        
+    </head>
+<body>
+    <h1>Gestor de Imágenes - KintuCms</h1>
+     <article>                   
+        <form method="post" action="" class="form">
+            <p>¿<?php echo $this->titulo; ?> ?</p>
+            <input type="hidden" name="guardar" value="1">
+            <ul>
+                <li>
+                    <label>Descripción</label>
+                    <span><?php echo $this->datos['descripcion']; ?></span>
+                </li>
+                <li>
+                    <input type="submit" class="submit" value="Confirmar"><a href="<?php echo URL_BASE;?>archivo/img_listar">Cancelar</a>
+                </li>
+            </ul>    
+        </form>
+    </article>
+</body>
+</html>

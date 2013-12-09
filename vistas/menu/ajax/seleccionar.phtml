@@ -1,0 +1,8 @@
+<select id="padre" name="padre" optional>
+    <?php if ($this->datos) : ?>
+        <option value="ninguno">Ninguno</option>
+        <?php for ($i = 0; $i < count($this->datos); $i++) :?>
+            <option value="<?php echo $this->datos[$i]['id']; ?>"><?php echo $this->datos[$i]['texto']; ?></option>
+        <?php endfor; ?>
+    <?php endif; ?>    
+</select>

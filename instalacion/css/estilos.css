@@ -1,0 +1,124 @@
+
+*{
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+body{
+    background: #DDD;
+}
+#contenedor{
+    background: #EEE;
+    margin: 20px;
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid #BBB;
+}
+.field{
+    padding: 10px;
+    border: 1px solid #CCC;
+    background: #FFF;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+h1{
+    padding: 10px;
+}
+.field p{
+    padding: 5px;
+}
+
+/** formularios { **/
+form label{
+    font-weight: bold;
+    color: #444;
+    display: block
+}
+form .in, form select{
+    padding: 5px 8px;
+    width: 300px;
+}
+form textarea{
+    padding: 8px;
+    width: 96%
+}
+form .in, form textarea, #contenido form select { 
+    border:1px solid #AAA;
+    box-shadow: 0px 0px 3px #ccc, 0 10px 15px #eee inset;
+    border-radius: 3px;
+    color: #666;
+    background: #FFF;
+    padding-right: 10px;
+    -moz-transition: padding .25s; 
+    -webkit-transition: padding .25s; 
+    transition: padding .25s;
+}
+form .largo{
+    width: 95%
+}
+.largo{
+    width: 95%
+}
+form .in:focus, #contenido form textarea:focus {
+    background: #FFF; 
+    border:1px solid #555; 
+    box-shadow: 0 0 3px #aaa; 
+    padding-right: 30px;
+}
+form .in:optional:valid, #contenido form select:optional:valid{
+    box-shadow: 0 0 3px #5cd053;
+    border-color: #28921f;
+    color: #222;
+}
+form .in:required:valid, #contenido form textarea:required:valid, #contenido form select:required:valid{
+    box-shadow: 0 0 3px #5cd053;
+    border-color: #28921f;
+    color: #222;
+}
+form .in:focus:invalid, #contenido form textarea:focus:invalid, #contenido form select:focus:invalid{
+    box-shadow: 0 0 5px #d45252;
+    border-color: #b03535;
+    color: #333;
+}
+input.submit{
+    padding: 8px 25px;
+    font-weight: bold;
+    line-height: 1;
+    color: #444;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #CCC #AAA #777;
+    background-image: -webkit-linear-gradient(top, #FFF, #BBB);
+    background-image: -moz-linear-gradient(top, #FFF, #BBB);
+    background-image: linear-gradient(top, #FFF, #BBB);
+    border-radius: 3px;
+    text-shadow: 0 1px 2px #FFF;
+    margin-right: 20px;
+    text-align: center;
+}
+input.submit:hover{
+    cursor: pointer;
+    text-shadow: 0 0 2px #FFF;
+    box-shadow: 0 2px 5px #444;
+    color: #2470BD;
+    border-color: #AAA #888 #666;
+}
+input.submit:active{
+    opacity: .5;
+}
+/** } **/
+
+.correcto{
+    border: 1px solid #A2D246;
+    margin-bottom: 10px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background: #EBF8A4;
+}
+.error{
+    border: 1px solid #B67B82;
+    margin-bottom: 5px;
+    padding: 10px;
+    border-radius: 5px;
+    background: #FFDDDD;
+}

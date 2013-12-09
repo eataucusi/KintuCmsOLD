@@ -1,0 +1,128 @@
+/* 
+    Document   : template
+    Created on : 31/01/2013, 01:45:07 PM
+    Author     : Edison Ataucusi R. <ediar89@gmail.com>
+    Description:
+        ...
+*/
+
+html{
+    font-size: 62.5%;
+}
+body{
+    font-size: 1.6em;
+    font-family: 'Open Sans',"Helvetica Neue",Helvetica,Arial,sans-serif;
+    background: #e3e7f0;
+}
+
+
+
+.limites{
+    padding: 0 15px;
+}
+
+/** header { **/
+header{
+    background: #2c2d32;
+}
+#logo{
+    float: left;
+    height: 50px;
+}
+
+/** } **/
+
+#navegacion{
+    background: #123a5f;
+}
+
+#principal{
+    background: #EFF2F5;
+}
+#izquierda{
+    width: 250px;
+    float: left;
+    padding: 10px 0 50px 0;
+}
+
+/** menu { **/
+.menu ul{
+    list-style: none;
+}
+.menu a{
+    text-decoration: none;
+    display: block;
+    color: #6d6a31;
+    border-bottom: 1px dashed #AAA;
+    padding: 3px 0;
+}
+.menu a:hover{
+    text-decoration: underline;
+}
+.menu > ul > li{
+    padding: 5px 0;
+}
+.menu > ul > li > a{
+    color: #333;
+    font-weight: bold;
+}
+
+.menu > ul > li > ul{
+    padding-left: 20px;
+}
+.menu > ul > li > ul > li > ul{
+    padding-left: 20px;
+}
+/** } **/
+
+#contenido{
+    margin: 20px 0;
+    border-radius: 5px;
+}
+
+#contenido h1{
+    margin-bottom: 10px;
+}
+
+/** derecha { **/
+#derecha{
+    margin: 0 0 30px 280px;
+}
+.widget{
+    border: 1px solid #CCC;
+    background: #FFF;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+.widget h3{
+    font-size: 1.2em;
+    padding: 10px 0;
+    color: #0A6C87;
+}
+
+.widget .cuerpo_widget img{
+    width: 100%;
+}
+/** } **/
+
+/** pie { **/
+#pie{
+    background: url('../img/bg-pie-top.jpg') repeat-x #313131;
+    border-top: 8px solid #000;
+}
+#derechos{
+    background: url('../img/bg-pie-bottom.jpg') repeat-x #000;
+    padding: 20px 0 10px 0;
+    text-align: center;
+    color: #777;
+}
+#derechos a{
+    text-decoration: none;
+    color: #BBB;
+}
+#derechos a:hover{
+    color: #EEE;
+    text-decoration: underline;
+}
+/** } **/

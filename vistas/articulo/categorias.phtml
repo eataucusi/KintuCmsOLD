@@ -1,0 +1,78 @@
+<article>
+    <h1><?php echo $this->titulo; ?></h1>  
+    <?php if (Sesion::get('msj')) : ?>
+        <div class="correcto">
+            <img alt="img" src="<?php echo $this->plantilla; ?>img/correcto.png"> 
+            <?php
+            echo Sesion::get('msj');
+            Sesion::set('msj', '');
+            ?>
+        </div>
+    <?php endif; ?>
+    <?php if ($this->categorias) : ?>
+        <table class="table">
+            <tr>
+                <th>categoria</th><th>imagen</th><th>N° de articulos</th><th>opciones</th>                 
+            </tr>
+
+            <?php $_menu = $this->cate; ?>              
+            <?php for ($i = 0; $i < count($_menu); $i++): ?>
+                <tr>
+                    <td><span><?php echo $_menu[$i]['menu']['categoria']; ?></span></td>
+                    <td><img alt="img" src="<?php echo $this->rutaPublico, '/img/categorias/', $_menu[$i]['menu']['img']; ?>" width="50"></td>  
+                    <td><?php echo $_menu[$i]['narticulo']; ?></td>        
+                    <td>
+                        <?php if ($_menu[$i]['narticulo']) : ?>
+                            <?php if (Sesion::get('nivel') > 2) : ?>
+                                <a href="<?php echo URL_BASE, 'articulo/listar/', $_menu[$i]['menu']['id'], ADMIN ?>">Ver articulos</a>
+                            <?php else: ?>
+                                <a href="<?php echo URL_BASE, 'articulo/categoria/', $_menu[$i]['menu']['nombre'], ADMIN ?>">Ver articulos</a>
+                            <?php endif; ?>
+                        <?php endif; ?>
+                    </td>
+                </tr>
+                <?php if ($_menu[$i]['submenu']): ?>
+                    <?php $_smenu = $_menu[$i]['submenu']; ?>
+                    <?php for ($j = 0; $j < count($_smenu); $j++): ?>
+                        <tr>
+                            <td><span class="tab"></span><span><?php echo $_smenu[$j]['menu']['categoria']; ?></span></td>
+                            <td><img alt="img" src="<?php echo $this->rutaPublico, '/img/categorias/', $_smenu[$j]['menu']['img']; ?>" width="50"></td> 
+                            <td><?php echo $_smenu[$j]['narticulo']; ?></td>                
+                            <td>
+                                <?php if ($_smenu[$j]['narticulo']) : ?>
+                                    <?php if (Sesion::get('nivel') > 2) : ?>
+                                        <a href="<?php echo URL_BASE, 'articulo/listar/', $_smenu[$j]['menu']['id'], ADMIN ?>">Ver articulos</a>
+                                    <?php else: ?>
+                                        <a href="<?php echo URL_BASE, 'articulo/categoria/', $_smenu[$j]['menu']['nombre'], ADMIN ?>">Ver articulos</a>
+                                    <?php endif; ?>
+                                <?php endif; ?>
+                            </td>
+                        </tr>
+                        <?php if ($_smenu[$j]['submenu']): ?>
+                            <?php $_ssmenu = $_smenu[$j]['submenu']; ?>                  
+                            <?php for ($k = 0; $k < count($_ssmenu); $k++): ?>
+                                <tr>
+                                    <td><span class="tab"></span><span class="tab"></span><span><?php echo $_ssmenu[$k]['categoria']; ?></span></td>
+                                    <td><img alt="img" src="<?php echo $this->rutaPublico, '/img/categorias/', $_ssmenu[$k]['img']; ?>" width="50"></td> 
+                                    <td><?php echo $_ssmenu[$k]['narticulo']; ?></td>                         
+                                    <td>
+                                        <?php if ($_ssmenu[$k]['narticulo']) : ?>
+                                            <?php if (Sesion::get('nivel') > 2) : ?>
+                                                <a href="<?php echo URL_BASE, 'articulo/listar/', $_ssmenu[$k]['id'], ADMIN ?>">Ver articulos</a>
+                                            <?php else: ?>
+                                                <a href="<?php echo URL_BASE, 'articulo/categoria/', $_ssmenu[$k]['nombre'], ADMIN ?>">Ver articulos</a>
+                                            <?php endif; ?>
+                                        <?php endif; ?>
+                                    </td>
+                                </tr>
+                            <?php endfor; ?> 
+                        <?php endif; ?>
+                    <?php endfor; ?>
+                <?php endif; ?>   
+            <?php endfor; ?>
+
+        </table>
+    <?php else : ?>
+        <p>No se encontró resultados.</p>
+    <?php endif; ?>            
+</article>

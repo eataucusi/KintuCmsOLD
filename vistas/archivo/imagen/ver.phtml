@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Imagenes</title>
+        <base href="<?php echo URL_BASE ?>">
+        <meta lang="es" charset="utf-8">        
+        <script type="text/javascript" src="<?php echo $this->rutaPublico?>js/jquery-1.8.2.js"></script>
+        <script type="text/javascript" src="<?php echo $this->rutaPublico ?>js/tinymce/jscripts/tiny_mce/tiny_mce_popup.js"></script>
+	<script type="text/javascript" src="<?php echo $this->rutaPublico ?>js/tinymce/jscripts/tiny_mce/plugins/imgphp/js/dialog.js"></script>
+        <link rel="stylesheet" href="<?php echo $this->rutaPublico ?>css/pop_up.css" media="all" type="text/css">
+        <script type="text/javascript">
+            $(function(){
+                $('.opt_img').click(function(e){
+                    e.preventDefault();
+                    $('#usar_img').val($(this).attr('href'));
+                    $('form').submit();
+                })
+            })
+        </script>
+    </head>
+<body>
+        <h1>Gestor de Imágenes - KintuCms</h1>
+    <article>
+        <p><a class="add" href="<?php echo URL_BASE; ?>archivo/img_listar">Lista de imágenes</a></p>
+        <h4><a class="opt_img" href="<?php echo $this->rutaPublico, 'img/articulos/', $this->datos;?>">Usar esta imagen</a></h4>
+        <p>
+            <img class="img" src="<?php echo $this->rutaPublico, 'img/articulos/', $this->datos;?>">
+        </p>        
+        <h4><a class="opt_img" href="<?php echo $this->rutaPublico, 'img/articulos/', $this->datos;?>">Usar esta imagen</a></h4> 
+    </article>
+<form onsubmit="ImgphpDialog.insert();return false;" action="#" style="display: none">
+    <input id="usar_img" name="usar_img" type="text" class="text">
+</form>
+</body>
+</html>

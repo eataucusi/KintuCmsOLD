@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta lang="es" charset="utf-8">
+        <base href="<?php echo URL_BASE ?>">
+        <title><?php echo $this->titulo . ' | ' . DOMINIO ?></title>
+        <meta name="description" content="<?php echo $this->meta . ' | ' . DOMINIO ?>">
+        <meta property="og:image" content="<?php echo $this->ruta; ?>img/logo.png">
+        <link rel="stylesheet" href="<?php echo $this->rutaPublico ?>css/core.css" media="all" type="text/css">
+        <link rel="stylesheet" href="<?php echo $this->ruta ?>css/plantilla.css" media="all" type="text/css">
+        <?php for ($i = 0; $i < count($this->_css); $i++) : ?>
+            <link rel="stylesheet" href="<?php echo $this->_css[$i] ?>" media="all" type="text/css"> 
+        <?php endfor; ?>
+        <link rel="shortcut icon" href="<?php echo $this->ruta ?>favicon.ico">
+        <script type="text/javascript" src="<?php echo $this->rutaPublico ?>js/jquery-1.8.2.min.js"></script>
+        <script type="text/javascript" src="<?php echo $this->rutaPublico ?>js/jquery.easing.1.3.js"></script>
+        <script type="text/javascript" src="<?php echo $this->rutaPublico ?>js/jquery.menu.js"></script>
+        <script type="text/javascript" src="<?php echo $this->rutaPublico ?>js/jquery.Wslider.js"></script>
+        <script type="text/javascript" src="<?php echo $this->rutaPublico ?>js/iniciar.js"></script>
+        <?php for ($i = 0; $i < count($this->_js); $i++) : ?>
+            <script type="text/javascript" src="<?php echo $this->_js[$i]; ?>"></script>
+        <?php endfor; ?>
+    </head>
+    <body> 
+        <div id="contenedor">
+            <div class="msg_alerta">
+                <noscript>
+                <p><img alt="img" src="<?php echo $this->rutaPublico ?>img/app/error.png"> Para disfrutar de una mejor experiencia en este sitio, habilita JavaScript en tu navegador.</p>
+                </noscript>                  
+                <!--[if IE]>                    
+                <p><img alt="img" src="<?php echo $this->rutaPublico ?>img/app/error.png"> Estas usando Internet explorer, para disfrutar de una mejor experiencia en este sitio te recomendamos usar
+                <strong><a href="https://www.google.com/chrome/" target="_BLANK">Google Chrome</a></strong> o
+                <strong><a href="http://www.mozilla.org/es-ES/firefox/new/" target="_BLANK">Mozilla Firefox</a>.</strong></p>
+                <script type="text/javascript">
+                var e = ("abbr,article,aside,audio,canvas,datalist,details,figure,footer,header,hgroup,mark,menu,meter,nav,output,progress,section,time,video").split(',');
+                for (var i=0; i<e.length; i++) {
+                    document.createElement(e[i]);
+                }
+                </script>
+                <![endif]-->
+            </div>
+            <header>
+                <div class="limites">
+                    <div id="logo">
+                        <a href="<?php echo URL_BASE ?>"><img src="<?php echo $this->ruta ?>img/logo.png" alt="<?php echo DOMINIO ?>"></a>
+                    </div>
+                    <div id="acceso">
+                        <?php echo $this->getWidget('usuario') ?> 
+                    </div>
+                    <div id="social">
+                        <?php echo $this->getWidget('social') ?> 
+                    </div>                    
+                    <div class="clear"></div>
+                </div>                    
+            </header>
+            <nav>                
+                <div id="menu">
+                    <div class="limites">
+                        <?php echo $this->getWidget('menu') ?> 
+                    </div>
+                </div>
+                <div id="navegacion">
+                    <div class="limites">
+                        <div class="estas-en">
+                            <?php echo $this->getWidget('navegacion') ?> 
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <section id="cuerpo">
+                <div class="limites">
+                    <div id="slider">
+                        <?php echo $this->getWidget('slider') ?>                       
+                    </div> 
+                    <div class="clear"></div>
+                </div>
+                <div class="limites">
+                    <div id="principal">
+                        <div id="izquierda">
+                            <div id="contenido">
+                                <section>
+                                    <?php echo $this->contenido ?>                                    
+                                </section>
+                            </div>                           
+                        </div>
+                        <div id="derecha"> 
+                            <?php echo $this->getWidget('derecha') ?>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </section>
+            <footer>
+                <div id="pie">
+                    <div class="limites">
+                        <?php echo $this->getWidget('footer') ?>                        
+                    </div> 
+                    <div class="clear"></div>
+                </div>
+                <div id="derechos">
+                    <div class="limites">
+                        <?php echo $this->getWidget('derechos') ?>                        
+                    </div>                    
+                </div>
+            </footer>
+        </div>
+        <div id="ir-arriba">
+            <a href="#contenedor" class="ancla" title="Ir arriba"><img alt="Ir arriba" src="<?php echo $this->rutaPublico ?>img/app/up.png"></a> 
+        </div>
+        <div id="cargando"></div>
+        <div id="marco">
+            <div class="ventana">
+                <img alt="cagando" src="<?php echo $this->rutaPublico ?>img/app/cargando.gif">
+            </div>
+        </div>
+    </body>
+</html>

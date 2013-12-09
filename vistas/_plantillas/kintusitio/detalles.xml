@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plantilla>
+    <nombre>kintusitio</nombre>
+    <para>Sitio</para>
+    <creado>2013-12-01</creado>
+    <autor>Edison Ataucusi</autor>
+    <emailAutor>ediar89@gmail.com</emailAutor>
+    <urlAutor>http://kintucms.org/</urlAutor>
+    <detalle>Plantilla para sitio de kintucms</detalle>
+    <vistaPrevia>img</vistaPrevia>
+    <posiciones>       
+        <posicion>usuario</posicion>        
+        <posicion>social</posicion>
+        <posicion>menu</posicion>
+        <posicion>navegacion</posicion>        
+        <posicion>slider</posicion>
+        <posicion>derecha</posicion>
+        <posicion>footer</posicion>
+        <posicion>derechos</posicion>
+    </posiciones>
+</plantilla>

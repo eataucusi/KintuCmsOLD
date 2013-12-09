@@ -1,0 +1,38 @@
+<article>
+    <h2><?php echo $this->titulo; ?> (<a href="<?php echo URL_BASE; ?>cuenta/salir">Salir</a>)</h2>
+    <?php if (Sesion::get('msj')) : ?>
+        <div class="correcto">
+            <img alt="img" src="<?php echo $this->rutaPublico ?>img/app/correcto.png"> 
+            <?php
+            echo Sesion::get('msj');
+            Sesion::matar('msj');
+            ?>
+        </div>
+    <?php endif; ?>
+    <h3>Mis datos (<a href="<?php echo URL_BASE, 'cuenta/editar_datos', ADMIN ?>">Editar</a>)</h3>
+    <ul class="cuenta">                
+        <li>
+            <label>Nombre completo:</label>
+            <span><?php echo $this->datos['nombre']; ?></span>
+        </li>
+        <li>
+            <label>Login:</label>
+            <span><?php echo $this->datos['login']; ?></span>
+        </li>
+        <li>
+            <label>Email:</label>
+            <span><?php echo $this->datos['email']; ?></span>
+        </li>
+        <li>
+            <label>Rol:</label>
+            <span><?php echo $this->datos['rol']; ?></span>
+        </li>
+        <li>
+            <label>Acerca de mí:</label>
+            <span><?php echo $this->datos['acerca']; ?></span>
+        </li>
+    </ul>
+    <h3>Mi imagen (<a href="<?php echo URL_BASE, 'cuenta/cambiar_imagen', ADMIN ?>">Cambiar</a>)</h3>
+    <img alt="img" src="<?php echo $this->rutaPublico, 'img/usuarios/', $this->datos['foto']; ?>">
+    <h3>Mi contraseña (<a href="<?php echo URL_BASE, 'cuenta/editar_pass', ADMIN ?>">Editar</a>)</h3>
+</article>

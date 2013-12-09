@@ -1,0 +1,282 @@
+/* 
+    Document   : pop_up
+    Created on : 31/01/2013, 01:45:07 PM
+    Author     : Edison Ataucusi R. <ediar89@gmail.com>
+    Description:
+        ...
+*/
+
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+body{
+    background: url('../img/app/body.jpg');
+    font-family: 'Signika Negative', sans-serif;
+    font-size: 62.5%;
+}
+h1{
+    font-size: 1.5em;
+    background: #DDD;
+    border-radius: 5px;
+    border: 1px solid #CCC;
+}
+h2{
+    font-size: 1.8em;
+}
+h3{
+    font-size: 1.4em;
+}
+h4{
+    font-size: 1.1em;
+}
+h5{
+    font-size: 1em;
+}
+a:link{
+    text-decoration: none;
+    color: #2570BB;
+}
+a{
+    text-decoration: none;
+    color: #2570BB;
+}
+a:hover{
+    text-decoration: underline;
+}
+p{
+    padding: 2px 0;
+}
+.clear {
+    clear: both;
+}
+
+
+/* tabla { */
+table{
+    border: 1px solid #BEBFB9;
+    width: 100%;
+    border-spacing: 0;
+    border-collapse: collapse;
+    margin-top: 5px;
+}
+table th{
+    background: #E1E2DC;
+    border: 1px solid #BEBFB9;
+    padding: 3px 10px;
+    text-transform: uppercase;
+    font-size: .9em;
+    font-weight: bold;
+    word-break: break-all;
+}
+table td{    
+    padding: 5px 10px;
+    word-break: break-all;
+}
+table td > a{
+    display: block;
+}
+table td img{
+    max-width: 50px;
+    border-radius: 3px;
+    box-shadow: 0 0 1px 2px #555;
+}
+.img{
+    box-shadow: 0 0 1px 2px #555;
+    border: 2px solid #FFF;
+}
+table tr{
+    background: #F5F5F5;
+}
+table tr:nth-child(2n){
+    background: #EEE;
+}
+table tr:hover{
+    background: #DDD;
+}
+#cuerpoP_tbl{
+    width: 98%;
+}
+.tab{
+    width: 25px;
+    float: left;
+    height: 10px;
+}
+.txtarea{
+    border: 1px solid #555;
+}
+/* tabla } */
+article{
+    font-size: 1.5em;
+}
+
+/*  paginacion {  */ 
+#paginacion {
+    padding: 10px 0;
+    margin-top: 10px;
+}
+#paginacion a{
+    color: #444;
+    padding: 3px 10px;
+    background: #AAA;
+    background: -webkit-linear-gradient(top,#FFF,#AAA);
+    background: -moz-linear-gradient(top,#FFF,#AAA);
+    background: linear-gradient(top,#FFF,#AAA);
+    border-width: 1px;
+    border-style: solid;
+    border-color: #CCC #AAA #777;    
+    text-decoration: none;
+    margin-right: 3px;
+    border-radius: 2px;
+}
+#paginacion a.texto{
+    background: transparent;
+    border-color: transparent;
+}
+#paginacion a.link:hover{
+    color: #2570BB;
+    box-shadow: 0 5px 10px #444
+}
+#paginacion a.actual{
+    background: #555;
+    background: -webkit-linear-gradient(top,#999,#333);
+    background: -moz-linear-gradient(top,#999,#333);
+    background: linear-gradient(top,#999,#333);
+    color: #EEE;
+    border-color: #666 #555 #222;
+}
+/*  paginacion }  */
+
+/*  formularios { */
+.form ul{
+    list-style: none;
+}
+.form li{
+    border-top: 1px dashed #CCC;
+    padding: 7px;
+}
+.form li .span{
+    font-style: italic;
+    color: #009900;
+    font-size: .9em;
+    margin-left: 30px;
+}
+.form label{
+    font-weight: bold;
+    color: #444;
+    display: block
+}
+.form .in, .form select{
+    padding: 5px 8px;
+    width: 300px;
+}
+.form textarea{
+    padding: 8px;
+    width: 90%
+}
+.form .in, .form textarea, .form select { 
+    border:1px solid #AAA;
+    box-shadow: 0px 0px 3px #ccc, 0 10px 15px #eee inset;
+    border-radius: 3px;
+    color: #666;
+    background: #FFF;
+    padding-right: 10px;
+    -moz-transition: padding .25s; 
+    -webkit-transition: padding .25s; 
+    transition: padding .25s;
+}
+
+.form .largo{
+    width: 95%
+}
+
+.form .in:focus, .form textarea:focus {
+    background: #FFF; 
+    border:1px solid #555; 
+    box-shadow: 0 0 3px #aaa; 
+    padding-right: 30px;
+}
+.form .in:optional:valid, .form select:optional:valid{
+    box-shadow: 0 0 3px #5cd053;
+    border-color: #28921f;
+    color: #222;
+}
+.form .in:required:valid, .form textarea:required:valid, .form select:required:valid{
+    box-shadow: 0 0 3px #5cd053;
+    border-color: #28921f;
+    color: #222;
+}
+.form .in:focus:invalid, .form textarea:focus:invalid, .form select:focus:invalid{
+    box-shadow: 0 0 5px #d45252;
+    border-color: #b03535;
+    color: #333;
+}
+
+input.submit{
+    padding: 8px 25px;
+    font-weight: bold;
+    line-height: 1;
+    color: #444;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #CCC #AAA #777;
+    background-image: -webkit-linear-gradient(top, #FFF, #BBB);
+    background-image: -moz-linear-gradient(top, #FFF, #BBB);
+    background-image: linear-gradient(top, #FFF, #BBB);
+    border-radius: 3px;
+    text-shadow: 0 1px 2px #FFF;
+    margin-right: 20px;
+    text-align: center;
+}
+input.submit:hover{
+    cursor: pointer;
+    text-shadow: 0 0 2px #FFF;
+    box-shadow: 0 2px 5px #444;
+    color: #2470BD;
+    border-color: #AAA #888 #666;
+}
+input.submit:active{
+    opacity: .5;
+}
+/*  formularios }  */
+
+.correcto{
+    border: 1px solid #A2D246;
+    margin-bottom: 10px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background: #EBF8A4;
+}
+.error{
+    border: 1px solid #B67B82;
+    margin-bottom: 5px;
+    padding: 10px;
+    border-radius: 5px;
+    background: #FFDDDD;
+}
+.correcto img, .error img{
+    float: left;
+    margin: 2px 5px 0 -4px;
+    height: 16px;
+    width: 16px;
+}
+.error span{
+    font-weight: bold;
+}
+
+.add{
+    margin-top: 2px;
+    padding: 1px 5px;
+    background: #333;
+    border-radius: 3px;
+    color: #EEE;
+}
+.opt_img{
+    background: #222;
+    padding: 2px 5px;
+    border-radius: 5px;
+}
+p{
+    padding: 5px;
+}

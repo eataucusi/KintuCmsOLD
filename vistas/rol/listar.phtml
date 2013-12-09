@@ -1,0 +1,20 @@
+<article>
+    <h1><?php echo $this->titulo; ?></h1>  
+    <p>Por seguridad de la aplicacion no se permite agregar, editar ni eliminar roles, esperamos agregar esta funcionalidad en futuras versiones.</p>
+    <?php if ($this->datos) : ?>
+        <table class="table">
+            <tr>
+                <th>N°</th><th>rol</th><th>detalle</th>                 
+            </tr>
+            <?php for ($i = 0; $i < count($this->datos); $i++) : ?>
+                <tr>
+                    <td><?php echo $this->datos[$i]['id']; ?></td>
+                    <td><?php echo $this->datos[$i]['rol']; ?></td>
+                    <td><?php echo $this->datos[$i]['detalle']; ?></td>
+                </tr>
+            <?php endfor; ?>
+        </table>
+    <?php else : ?>
+        <p>No se encontró resultados.</p>
+    <?php endif; ?>            
+</article>

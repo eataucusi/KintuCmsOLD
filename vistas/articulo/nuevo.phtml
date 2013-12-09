@@ -1,0 +1,62 @@
+<article>                   
+    <form method="post" action="<?php echo URL_BASE, 'articulo/nuevo', ADMIN ?>" class="form">
+        <h1><?php echo $this->titulo ?></h1>
+        <?php if (isset($this->error)) : ?>
+            <div class="error">
+                <img alt="img" src="<?php echo $this->rutaPublico ?>img/app/error.png">
+                <span>Se ha detectado los siguientes errores:</span>
+                <?php for ($i = 0; $i < count($this->error); $i++) : ?>
+                    <?php echo '<br>', $i + 1, '. ', $this->error[$i]; ?>
+                <?php endfor; ?>
+            </div>
+        <?php endif; ?>
+        <input type="hidden" name="guardar" value="1">
+        <ul>              
+            <li>
+                <label for="titulo">Título:</label>
+                <input type="text" id="titulo" name="titulo" placeholder="Requerido" required class="in largo"
+                       value="<?php if (isset($this->datos['titulo'])) echo $this->datos['titulo']; ?>">                        
+            </li> 
+            <li>
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" placeholder="Requerido" required class="in largo"
+                       value="<?php if (isset($this->datos['nombre'])) echo $this->datos['nombre']; ?>"
+                       pattern="^[a-z0-9_\-]{6,150}$" title="Utiliza sólo letras (a-z), guíon, subguión y números, de 6 a 150 caracteres">
+            </li>
+            <li>
+                <label for="resumenA">Resumen(Se recomienda poner una imagen y los parrafos que desee):</label>
+                <textarea id="resumenA" name="resumen" rows="15" placeholder="Requerido"><?php if (isset($this->datos['resumen'])) echo $this->datos['resumen']; ?></textarea>
+            </li> 
+            <li>
+                <label for="cuerpoA">Cuerpo:</label>
+                <textarea id="cuerpoA" name="cuerpo" rows="30" placeholder="Requerido"><?php if (isset($this->datos['cuerpo'])) echo $this->datos['cuerpo']; ?></textarea>
+            </li>                    
+            <li>
+                <label for="meta">Metadatos:</label>
+                <input type="text" id="meta" name="meta" class="in largo" placeholder="Requerido" required value="<?php if (isset($this->datos['nombre'])) echo $this->datos['nombre']; ?>"> 
+            </li>                     
+            <li>
+                <label for="categoria">Categoría:</label>
+                <select id="categoria" name="categoria" required>
+                    <option value="">Seleccione</option>
+                    <?php for ($i = 0; $i < count($this->categoria); $i++) : ?>
+                        <option value="<?php echo $this->categoria[$i]['id']; ?>"
+                                <?php if (isset($this->datos['categoria']) && $this->datos['categoria'] == $this->categoria[$i]['id']) echo 'selected'; ?>>
+                                    <?php echo $this->categoria[$i]['texto']; ?>
+                        </option>
+                    <?php endfor; ?>
+                </select>
+            </li>
+            <li>
+                <label for="estado">Estado:</label>
+                <select id="estado" name="estado" required>
+                    <option value="2" <?php if (isset($this->datos['estado']) && $this->datos['estado'] == 2) echo ' selected'; ?>>Habilitado</option>  
+                    <option value="1" <?php if (isset($this->datos['estado']) && $this->datos['estado'] == 1) echo ' selected'; ?>>Deshabilitado</option> 
+                </select>
+            </li>
+            <li>
+                <input type="submit" class="submit" value="Guardar">
+            </li>
+        </ul> 
+    </form>
+</article>

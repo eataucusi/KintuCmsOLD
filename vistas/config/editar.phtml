@@ -1,0 +1,38 @@
+<article>
+    <h1><?php echo $this->titulo ?></h1> 
+    <?php if (isset($this->error)) : ?>
+        <div class="error">
+            <img alt="img" src="<?php echo $this->rutaPublico ?>img/app/error.png">
+            <span>Se ha detectado los siguientes errores:</span>
+            <?php for ($i = 0; $i < count($this->error); $i++) : ?>
+                <?php echo '<br>', $i + 1, '. ', $this->error[$i]; ?>
+            <?php endfor; ?>
+        </div>
+    <?php endif; ?>
+    <form method="post" action="" class="form">
+        <input type="hidden" name="guardar" value="1">
+        <table class="table">
+            <tr>
+                <th>Parámetro</th><th>detalle</th><th>valor</th>                 
+            </tr>
+            <?php for ($i = 0; $i < count($this->datos); $i++) : ?>
+                <tr>
+                    <td><?php echo $this->datos[$i]['parametro'] ?></td>
+                    <td><?php echo $this->datos[$i]['detalle'] ?></td>
+                    <td>
+                        <input type="text" name="<?php echo $this->datos[$i]['parametro'] ?>" class="in" placeholder="Requerido" required
+                               value="<?php
+                               if (isset($this->post[$this->datos[$i]['parametro']])) {
+                                   echo $this->post[$this->datos[$i]['parametro']];
+                               } else {
+                                   echo $this->datos[$i]['valor'];
+                               }
+                               ?>">
+
+                    </td>
+                </tr>
+<?php endfor; ?>
+        </table>
+        <input type="submit" class="submit" value="Guardar"> <a class="atras" href="<?php echo URL_BASE, 'config/ver', ADMIN ?>">Cancelar</a>
+    </form>  
+</article>

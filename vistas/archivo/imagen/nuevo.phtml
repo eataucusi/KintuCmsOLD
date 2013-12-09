@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Imagenes</title>
+        <base href="<?php echo URL_BASE ?>">
+        <meta lang="es" charset="utf-8">        
+        <script type="text/javascript" src="<?php echo $this->rutaPublico ?>js/jquery-1.8.2.js"></script>
+        <script type="text/javascript" src="<?php echo $this->rutaPublico ?>js/tinymce/jscripts/tiny_mce/tiny_mce_popup.js"></script>
+	<script type="text/javascript" src="<?php echo $this->rutaPublico ?>js/tinymce/jscripts/tiny_mce/plugins/imgphp/js/dialog.js"></script>
+        <link rel="stylesheet" href="<?php echo $this->rutaPublico ?>css/pop_up.css" media="all" type="text/css">
+        <script type="text/javascript">
+            $(function(){
+                $('.opt_img').click(function(e){
+                    e.preventDefault();
+                    $('#usar_img').val($(this).attr('href'));
+                    $('form').submit();
+                })
+            })
+        </script>
+    </head>
+<body>
+    <h1>Gestor de Imágenes - KintuCms</h1>
+    <article> 
+        <p>
+            <a class="add" href="<?php echo URL_BASE; ?>archivo/img_listar">Lista de Imágenes</a>
+        </p>
+        <form method="post" action="" class="form" enctype="multipart/form-data">
+            <h4>Agregar imagen</h4>
+            <?php if (isset($this->error)) : ?>
+            <div class="error">
+                <img alt="img" src="<?php echo $this->rutaPublico ?>img/app/error.png">
+                <span>Se ha detectado los siguientes errores:</span>
+                <?php for ($i = 0; $i < count($this->error); $i++) :?>
+                    <?php echo '<br>', $i + 1 , '. ', $this->error[$i]; ?>
+                <?php endfor; ?>
+            </div>
+            <?php endif; ?>
+            <input type="hidden" name="guardar" value="1">
+            <ul>              
+                <li>
+                    <label for="descripcion">Descripción de la imagen:</label>
+                    <input type="text" id="descripcion" name="descripcion" class="in" placeholder="Requerido"
+                           required value="<?php if (isset($this->datos['descripcion'])) echo $this->datos['descripcion'];?>">
+                    <span>* Máximo 50 carecteres.</span>
+                </li>
+                <li>
+                    <label for="archivo">Imagen:</label>
+                    <input type="file" id="archivo" name="archivo" class="in" accept="image/jpeg,image/png,image/gif" required>
+                    <span>* Tamaño máximo 1MB.</span>
+                </li>             
+                <li>
+                    <input type="submit" class="submit" value="Guardar">
+                </li>
+            </ul> 
+        </form>
+    </article>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<article>
+    <h1><?php echo $this->titulo; ?></h1>  
+    <?php if (Sesion::get('msj')) : ?>
+        <div class="correcto">
+            <img alt="img" src="<?php echo $this->rutaPublico ?>img/app/correcto.png"> 
+            <?php
+            echo Sesion::get('msj');
+            Sesion::set('msj', '');
+            ?>
+        </div>
+    <?php endif; ?>
+    <p><a href="<?php echo URL_BASE, 'usuario/nuevo', ADMIN ?>" class="add"><img alt="img" src="<?php echo $this->rutaPublico; ?>img/app/add.png"> Añadir usuario</a></p>
+    <?php if ($this->datos) : ?>
+        <table class="table">
+            <tr>
+                <th>login</th><th>nombre</th><th>rol</th><th>estado</th><th colspan="2">operaciones</th>                 
+            </tr>
+            <?php for ($i = 0; $i < count($this->datos); $i++) : ?>
+                <tr>
+                    <td><?php echo $this->datos[$i]['login']; ?></td>
+                    <td><?php echo $this->datos[$i]['nombre']; ?></td>
+                    <td><?php echo $this->datos[$i]['rol']; ?></td>
+                    <td><?php echo ($this->datos[$i]['estado'] == 1) ? 'Deshabilitado' : 'Habilitado'; ?></td>                    
+                    <td><a href="<?php echo URL_BASE, 'usuario/editar/', $this->datos[$i]['id'], ADMIN ?>">Editar</a></td>
+                    <td><a href="<?php echo URL_BASE, 'usuario/eliminar/', $this->datos[$i]['id'], ADMIN ?>"><?php echo ($this->datos[$i]['estado'] == 1) ? 'Habilitar' : 'Deshabilitar'; ?></a></td>
+                </tr>
+            <?php endfor; ?>
+        </table>
+    <?php else : ?>
+        <p>No se encontró resultados.</p>
+    <?php endif; ?>
+    <?php require RAIZ . 'vistas' . SD .'_utilidades'. SD .'paginador.phtml'; ?>
+</article>

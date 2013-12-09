@@ -1,0 +1,60 @@
+<article>
+    <h1><?php echo $this->titulo; ?></h1>  
+    <?php if (Sesion::get('msj')) : ?>
+        <div class="correcto">
+            <img alt="img" src="<?php echo $this->rutaPublico ?>img/app/correcto.png"> 
+            <?php
+            echo Sesion::get('msj');
+            Sesion::set('msj', '');
+            ?>
+        </div>
+    <?php endif; ?>
+    <p><a href="<?php echo URL_BASE, 'menu/nuevo', ADMIN ?>" class="add"><img alt="img" src="<?php echo $this->rutaPublico ?>img/app/add.png"> Añadir menú</a></p>
+    <?php if (isset($this->menus) && count($this->menus)) : ?>
+        <table class="table">
+            <tr>
+                <th>texto</th><th>url</th><th>abrir en</th><th>class</th><th colspan="2">operaciones</th>                 
+            </tr>
+
+            <?php $_menu = $this->menus; ?>              
+            <?php for ($i = 0; $i < count($_menu); $i++): ?>
+                <tr>
+                    <td><span><?php echo $_menu[$i]['menu']['texto']; ?></span></td>
+                    <td><?php echo $_menu[$i]['menu']['url']; ?></td>
+                    <td><?php echo ($_menu[$i]['menu']['ventana'])? 'Ventana Nueva': 'Misma Ventana' ?></td>
+                    <td><?php echo $_menu[$i]['menu']['class']; ?></td>
+                    <td><a href="<?php echo URL_BASE, 'menu/editar/', $_menu[$i]['menu']['id'], ADMIN ?>">Editar</a></td>
+                    <td><a href="<?php echo URL_BASE, 'menu/eliminar/', $_menu[$i]['menu']['id'], ADMIN ?>">Eliminar</a></td>
+                </tr>
+                <?php if ($_menu[$i]['submenu']): ?>
+                    <?php $_smenu = $_menu[$i]['submenu']; ?>
+                    <?php for ($j = 0; $j < count($_smenu); $j++): ?>
+                        <tr>
+                            <td><span class="tab"></span><span><?php echo $_smenu[$j]['menu']['texto']; ?></span></td>
+                            <td><?php echo $_smenu[$j]['menu']['url']; ?></td>
+                            <td><?php echo ($_smenu[$j]['menu']['ventana'])? 'Ventana Nueva': 'Misma Ventana' ?></td>
+                            <td><?php echo $_smenu[$j]['menu']['class']; ?></td>
+                            <td><a href="<?php echo URL_BASE, 'menu/editar/', $_smenu[$j]['menu']['id'], ADMIN ?>">Editar</a></td>
+                            <td><a href="<?php echo URL_BASE, 'menu/eliminar/', $_smenu[$j]['menu']['id'], ADMIN ?>">Eliminar</a></td>
+                        </tr>
+                        <?php if ($_smenu[$j]['submenu']): ?>
+                            <?php $_ssmenu = $_smenu[$j]['submenu']; ?>                  
+                            <?php for ($k = 0; $k < count($_ssmenu); $k++): ?>
+                                <tr>
+                                    <td><span class="tab"></span><span class="tab"></span><span><?php echo $_ssmenu[$k]['texto']; ?></span></td>
+                                    <td><?php echo $_ssmenu[$k]['url']; ?></td>
+                                    <td><?php echo ($_ssmenu[$k]['ventana'])? 'Ventana Nueva': 'Misma Ventana' ?></td>
+                                    <td><?php echo $_ssmenu[$k]['class']; ?></td>
+                                    <td><a href="<?php echo URL_BASE, 'menu/editar/', $_ssmenu[$k]['id'], ADMIN ?>">Editar</a></td>
+                                    <td><a href="<?php echo URL_BASE, 'menu/eliminar/', $_ssmenu[$k]['id'], ADMIN ?>">Eliminar</a></td>
+                                </tr>
+                            <?php endfor; ?> 
+                        <?php endif; ?>
+                    <?php endfor; ?>
+                <?php endif; ?>   
+            <?php endfor; ?>
+        </table>
+    <?php else : ?>
+        <p>No se encontró resultados.</p>
+    <?php endif; ?>            
+</article>

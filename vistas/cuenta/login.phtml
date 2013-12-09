@@ -1,0 +1,34 @@
+<article>                   
+    <form method="post" action="" class="form">
+        <h1><?php echo $this->titulo; ?></h1>
+        <?php if (isset($this->error)) : ?>
+            <div class="error">
+                <img alt="img" src="<?php echo $this->rutaPublico ?>img/app/error.png">
+                <span>Se ha detectado los siguientes errores:</span>
+                <?php for ($i = 0; $i < count($this->error); $i++) : ?>
+                    <?php echo '<br>', $i + 1, '. ', $this->error[$i]; ?>
+                <?php endfor; ?>
+            </div>
+        <?php endif; ?>
+        <input type="hidden" name="guardar" value="1">
+        <ul>
+            <li>
+                <label for="login">Login:</label>
+                <input type="text" id="login" name="login" class="in" placeholder="Requerido" required
+                       value="<?php if (isset($this->datos['login'])) echo $this->datos['login']; ?>"
+                       pattern="^[a-z0-9_\-]{6,}$" title="Utiliza sólo letras (a-z), guíon, subguión y números, 6 caracteres como mínimo">
+            </li>
+            <li>
+                <label for="pass">Contraseña:</label>
+                <input type="password" id="pass" name="pass" class="in" placeholder="Requerido" required
+                       value="<?php if (isset($this->datos['pass'])) echo $this->datos['pass']; ?>"
+                       pattern="^.{6,}" title="Utiliza 6 caracteres como mínimo, las contraseñas cortas son fáciles de adivinar">
+            </li>
+            <li>
+                <input type="submit" class="submit" value="Acceder">
+                <a href="<?php echo URL_BASE; ?>cuenta/recuperar">¿Olvidaste tu contraseña?</a>
+                &nbsp;|&nbsp; <a href="<?php echo URL_BASE; ?>cuenta/nuevo">Regístrate</a>
+            </li>
+        </ul> 
+    </form>
+</article>
