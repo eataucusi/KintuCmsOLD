@@ -147,6 +147,9 @@ article, aside, details, figcaption, figure,footer, header, hgroup, menu, nav, s
 #contenido ul{
     padding: 0 0 10px 35px;
 }
+#contenido ol{
+    padding: 0 0 10px 40px;
+}
 
 #contenido img{
     max-width: 100%;

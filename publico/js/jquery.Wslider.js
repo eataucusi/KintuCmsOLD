@@ -29,8 +29,6 @@
 	var root = $(this);
 	var li = root.find("li");
 	var images = li.find("img"); 
-        options.width = images.width();
-        options.height = images.height();
 	
         var pos,random_no,timer,image_timer,arr,index,block,w,h,src,parent,im,override=false,in_animation = false,controls;
 	var current = li.eq(1).toggleClass('active'),prev = li.first().addClass("reset");
