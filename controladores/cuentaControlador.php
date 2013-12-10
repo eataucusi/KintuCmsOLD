@@ -72,16 +72,9 @@ class cuentaControlador extends Controlador {
                 $this->_usuario->insertarUsuario(2, $this->getAlphaNum('login'), $this->getTexto('nombre'), $this->getEmail('email'), $this->getPass('pass'), rand(1000000000, 9999999999));
 
                 $usuario = $this->_usuario->getUsuarioLogin($this->getAlphaNum('login'));
-
                 $this->getLibreria('mail' . SD . 'class.phpmailer');
                 $mail = new PHPMailer();
-                $mail->IsSMTP();
-                $mail->SMTPAuth = TRUE;
-                $mail->SMTPSecure = 'ssl';
-                $mail->Host = "smtp.gmail.com";
-                $mail->Port = 465;
-                $mail->Username = MAIL_USER;
-                $mail->Password = MAIL_PASS;
+                $mail->From = MAIL_USER;
                 $mail->FromName = DOMINIO;
                 $mail->Subject = 'Activacion de cuenta de usuario';
                 $mail->Body = 'Hola <strong>' . $usuario['login'] . '</strong>,' .
@@ -93,8 +86,18 @@ class cuentaControlador extends Controlador {
                         $usuario['codigo'] . '/' . $usuario['id'] . '</a></p>';
                 $mail->AltBody = 'Su servidor de correo no soporta html';
                 $mail->AddAddress($usuario['email'], $usuario['nombre']);
-                $mail->Send();
-
+                if (!$mail->Send()) {
+                    $mail->IsSMTP();
+                    $mail->SMTPAuth = TRUE;
+                    $mail->SMTPSecure = 'ssl';
+                    $mail->Host = "smtp.gmail.com";
+                    $mail->Port = 465;
+                    $mail->Username = MAIL_USER;
+                    $mail->Password = MAIL_PASS;
+                    if (!$mail->Send()) {
+                        $this->redireccionar('traspie/acceso/405');
+                    }
+                }
                 Sesion::set('msj', 'Registro iniciado.');
                 Sesion::set('email', $usuario['email']);
                 $this->redireccionar('cuenta/nuevo');
@@ -262,16 +265,9 @@ class cuentaControlador extends Controlador {
                     $codigo = time() + 600;
                     $this->_usuario->recuperarUsuario($id, $codigo);
                     $usuario = $this->_usuario->getUsuario($id);
-
                     $this->getLibreria('mail' . SD . 'class.phpmailer');
                     $mail = new PHPMailer();
-                    $mail->IsSMTP();
-                    $mail->SMTPAuth = TRUE;
-                    $mail->SMTPSecure = 'ssl';
-                    $mail->Host = "smtp.gmail.com";
-                    $mail->Port = 465;
-                    $mail->Username = MAIL_USER;
-                    $mail->Password = MAIL_PASS;
+                    $mail->From = MAIL_USER;
                     $mail->FromName = DOMINIO;
                     $mail->Subject = 'Recuperar cuenta de usuario';
                     $mail->Body = 'Hola <strong>' . $usuario['login'] . '</strong>,' .
@@ -283,8 +279,18 @@ class cuentaControlador extends Controlador {
                             $usuario['codigo'] . '/' . $usuario['id'] . '</a></p>';
                     $mail->AltBody = 'Su servidor de correo no soporta html';
                     $mail->AddAddress($usuario['email'], $usuario['nombre']);
-                    $mail->Send();
-
+                    if (!$mail->Send()) {
+                        $mail->IsSMTP();
+                        $mail->SMTPAuth = TRUE;
+                        $mail->SMTPSecure = 'ssl';
+                        $mail->Host = "smtp.gmail.com";
+                        $mail->Port = 465;
+                        $mail->Username = MAIL_USER;
+                        $mail->Password = MAIL_PASS;
+                        if (!$mail->Send()) {
+                            $this->redireccionar('traspie/acceso/405');
+                        }
+                    }
                     Sesion::set('msj', 'Recuperación iniciada.');
                     $this->redireccionar('cuenta/recuperar');
                 }
@@ -311,16 +317,9 @@ class cuentaControlador extends Controlador {
             $contra = $this->_newPass();
             $pass = $this->getHash($contra);
             $this->_usuario->cambiarPass($usuario['id'], $pass);
-
             $this->getLibreria('mail' . SD . 'class.phpmailer');
             $mail = new PHPMailer();
-            $mail->IsSMTP();
-            $mail->SMTPAuth = TRUE;
-            $mail->SMTPSecure = 'ssl';
-            $mail->Host = "smtp.gmail.com";
-            $mail->Port = 465;
-            $mail->Username = MAIL_USER;
-            $mail->Password = MAIL_PASS;
+            $mail->From = MAIL_USER;
             $mail->FromName = DOMINIO;
             $mail->Subject = 'Recuperar cuenta de usuario';
             $mail->Body = 'Hola <strong>' . $usuario['login'] . '</strong>,' .
@@ -329,8 +328,18 @@ class cuentaControlador extends Controlador {
                     'Contraseña: ' . $contra . '<br>Puede cambiar sus datos iniciando sesión en <a href="' . URL_BASE . 'cuenta/login">' . URL_BASE . '</a>.</p>';
             $mail->AltBody = 'Su servidor de correo no soporta html';
             $mail->AddAddress($usuario['email'], $usuario['nombre']);
-            $mail->Send();
-
+            if (!$mail->Send()) {
+                $mail->IsSMTP();
+                $mail->SMTPAuth = TRUE;
+                $mail->SMTPSecure = 'ssl';
+                $mail->Host = "smtp.gmail.com";
+                $mail->Port = 465;
+                $mail->Username = MAIL_USER;
+                $mail->Password = MAIL_PASS;
+                if (!$mail->Send()) {
+                    $this->redireccionar('traspie/acceso/405');
+                }
+            }
             $this->_vista->msj = 'Recuperación finalizada, se ha enviado sus datos a su correo.';
             $this->_vista->titulo = 'Recuperar cuenta';
             $this->_vista->renderizar('confirmar');
@@ -355,4 +364,5 @@ class cuentaControlador extends Controlador {
         }
         return $pass;
     }
+
 }

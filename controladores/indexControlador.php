@@ -57,42 +57,4 @@ class indexControlador extends Controlador {
         $this->_vista->titulo = 'Últimas actividades en ' . DOMINIO;
         $this->_vista->renderizar('admin');
     }
-
-//    public function index() {
-//        if ($this->getInt('guardar') == 1) {
-//            $this->_vista->datos = $_POST;
-//            if (!$this->getTexto('nombre')) {
-//                $this->_vista->error[] = 'Nombre completo: utiliza 15 caracteres como minimo.';
-//            }
-//            if (!$this->getEmail('email')) {
-//                $this->_vista->error[] = 'Email: utiliza un email válido para responderte.';
-//            }
-//            if (!$this->getTexto('mensaje')) {
-//                $this->_vista->error[] = 'Mensaje: este campo no puede ser vacío.';
-//            }
-//            if (!isset($this->_vista->error)) {
-//                $this->getLibreria('mail' . SD . 'class.phpmailer');
-//                $mail = new PHPMailer();
-//                $mail->IsSMTP();
-//                $mail->SMTPAuth = TRUE;
-//                $mail->SMTPSecure = 'ssl';
-//                $mail->Host = "smtp.gmail.com";
-//                $mail->Port = 465;
-//                $mail->Username = MAIL_USER;
-//                $mail->Password = MAIL_PASS; 
-//                $mail->FromName = $this->getTexto('nombre');
-//                $mail->Subject = 'Comentario en la pagina principal';
-//                $mail->Body = '<p><strong>' . $this->getTexto('nombre') . ' ( ' . $this->getEmail('email') . ' ) ' . '</strong>, ha comentado en tu pagina principal, el comentario es: </p><p>' . 
-//                        $this->getTexto('mensaje') . '</p>';
-//                $mail->AltBody = 'Su servidor de correo no soporta html';
-//                $mail->AddAddress(MAIL_USER, $this->getTexto('nombre'));
-//                $mail->Send();                
-//                Sesion::set('msj', 'Su mensaje fue enviado, en el transcurso de estos días te responderé.');
-//                $this->redireccionar();
-//            }
-//        }    
-//        $this->_vista->titulo = 'KintuCms un simple cms';
-//        $this->_vista->getPaginacion(2, 10, 'url');
-//        $this->_vista->renderizar('index');
-//    }
 }

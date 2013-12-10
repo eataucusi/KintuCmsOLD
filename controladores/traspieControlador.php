@@ -41,6 +41,7 @@ class traspieControlador extends Controlador {
 	$error['402'] = 'No tiene los privilegios necesarios para acceder al sitio, necesita registrarse en el sitio para acceder a él.';
 	$error['403'] = 'Tiempo de la session expirada.';
         $error['404'] = 'El recurso solicitado ya no existe o ha sido desplazado, o es posible que la dirección esté mal escrita.';
+        $error['405'] = 'No se pudo enviar, correo electrónido.';
         if (array_key_exists($codigo, $error)) {
             return $error[$codigo];
         }
