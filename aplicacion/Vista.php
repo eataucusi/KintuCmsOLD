@@ -29,10 +29,12 @@ class Vista {
     public $peticion;
     public $titulo;
     public $meta;
+    public $url;
 
     public function __construct(Peticion $_peticion) {
         $this->peticion = $_peticion;
         $this->_controlador = $this->peticion->getControlador();
+        $this->url = $this->peticion->url;
         $this->plantilla = PLANTILLA;
         $this->ruta = URL_BASE . 'vistas/_plantillas/' . $this->plantilla . '/';
         $this->rutaPublico = URL_BASE . 'publico/';

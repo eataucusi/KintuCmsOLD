@@ -12,10 +12,6 @@
                 <td><a title="Ver comentarios" class="ancla" href="#comentarios">Comentarios (<?php echo $this->ncoment == 0 ? '0' : $this->ncoment; ?>)</a></td>
                 <td><span>|</span></td>
                 <td>Visto <?php echo $this->datos['leido'] ?> Veces</td>
-                <td><span>|</span></td>
-                <td>
-                    <a title="Compartir en Facebook" class="fb-comp" href="https://www.facebook.com/sharer/sharer.php?u=<?php echo URL_BASE, $_GET['url'] ?>" target="_blank"><img src="<?php echo $this->rutaPublico ?>img/app/fb.png"></a> 
-                </td>
             </tr>
         </table>
     </div>
@@ -28,14 +24,15 @@
         </div>
     </div>    
     <div class="impacto">
+        <p>¿Te gustó este artículo?, comenta y/o comparte.</p>
         <table style="margin: 0 auto">
             <tr>
-                <td><a title="Ver comentarios" class="ancla" href="#comentarios">Comentarios (<?php echo $this->ncoment == 0 ? '0' : $this->ncoment; ?>)</a></td>
-                <td><span>|</span></td>
-                <td>Visto <?php echo $this->datos['leido'] ?> Veces</td>
+                <td>
+                    <a title="Compartir este artículo en Google+" class="fb-comp" href="https://plus.google.com/share?url=<?php echo URL_BASE, $this->url ?>" target="_blank"><img src="<?php echo $this->rutaPublico ?>img/app/gp.png" alt="Comapartir en Google+"></a>
+                </td>
                 <td><span>|</span></td>
                 <td>
-                    <a title="Compartir en Facebook" class="fb-comp" href="https://www.facebook.com/sharer/sharer.php?u=<?php echo URL_BASE, $_GET['url'] ?>" target="_blank"><img src="<?php echo $this->rutaPublico ?>img/app/fb.png"></a> 
+                    <a title="Compartir este artículo en Facebook" class="fb-comp" href="https://www.facebook.com/sharer/sharer.php?u=<?php echo URL_BASE, $this->url ?>" target="_blank"><img src="<?php echo $this->rutaPublico ?>img/app/fb.png" alt="Comapartir en Facebook"></a> 
                 </td>
             </tr>
         </table>
@@ -68,7 +65,7 @@
                 </ul>            
 <?php else: ?>
                 <p><a href="<?php echo URL_BASE; ?>cuenta/login">Inicie sesion para comentar.</a></p>
-                <p>Y si aún no estas regiatrado, regístrate, como usuario registrado podrás:</p>
+                <p>Y si aún no estas registrado, regístrate, como usuario registrado podrás:</p>
                 <ul>
                     <li>* Escribir comentarios</li>
                     <li>* Configurar tu imagen</li>

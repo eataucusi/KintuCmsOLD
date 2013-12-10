@@ -129,7 +129,7 @@ abstract class Controlador {
                 if ('ninguno' == strtolower($_POST[$clave])) {
                     return NULL;
                 }
-                return $_POST[$clave];
+                return htmlspecialchars($_POST[$clave], ENT_NOQUOTES);
             }
             return NULL;
         }
