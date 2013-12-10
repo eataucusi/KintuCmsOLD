@@ -200,7 +200,7 @@ CREATE TABLE IF NOT EXISTS `posicion` (
   `nombre` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_posicion_plantilla1` (`plan_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;---
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;---
 
 INSERT INTO `posicion` (`id`, `plan_id`, `nombre`) VALUES
 (1, 1, 'usuario_admin'),
@@ -213,7 +213,9 @@ INSERT INTO `posicion` (`id`, `plan_id`, `nombre`) VALUES
 (8, 2, 'slider'),
 (9, 2, 'derecha'),
 (10, 2, 'footer'),
-(11, 2, 'derechos') ;---
+(11, 2, 'derechos')
+(12, 2, 'top-script')
+(13, 2, 'bot-script') ;---
 
 CREATE TABLE IF NOT EXISTS `roles` (
   `id` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,

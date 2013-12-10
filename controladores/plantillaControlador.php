@@ -74,7 +74,7 @@ class plantillaControlador extends Controlador {
         $this->_vista->renderizar('nuevo');
     }
 
-    public function defecto($id) {
+    public function defecto($id = 0) {
         if (!Sesion::accesoVista('Administrador')) {
             $this->redireccionar();
         }
@@ -91,7 +91,7 @@ class plantillaControlador extends Controlador {
         $this->redireccionar('plantilla/listar');
     }
 
-    public function asignar($id) {
+    public function asignar($id = 0) {
         if (!Sesion::accesoVista('Administrador')) {
             $this->redireccionar();
         }
@@ -127,7 +127,7 @@ class plantillaControlador extends Controlador {
         $this->_vista->renderizar('asignar');
     }
 
-    public function eliminar($id) {
+    public function eliminar($id = 0) {
         if (!Sesion::accesoVista('Administrador')) {
             $this->redireccionar();
         }

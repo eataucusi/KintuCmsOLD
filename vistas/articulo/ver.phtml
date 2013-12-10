@@ -7,13 +7,9 @@
         </span>
     </div>
     <div class="impacto">
-        <table style="margin: 0 auto">
-            <tr>
-                <td><a title="Ver comentarios" class="ancla" href="#comentarios">Comentarios (<?php echo $this->ncoment == 0 ? '0' : $this->ncoment; ?>)</a></td>
-                <td><span>|</span></td>
-                <td>Visto <?php echo $this->datos['leido'] ?> Veces</td>
-            </tr>
-        </table>
+        <a title="Ver comentarios" class="ancla" href="#comentarios">Comentarios (<?php echo $this->ncoment == 0 ? '0' : $this->ncoment; ?>)</a>
+        <span>|</span>
+        Visto <?php echo $this->datos['leido'] ?> Veces
     </div>
     <div class="articulo">
         <div class="introduccion">
@@ -22,20 +18,19 @@
         <div>
             <?php echo $this->datos['cuerpo'] ?>
         </div>
-    </div>    
-    <div class="impacto">
+    </div>     
+    <div class="impacto">  
         <p>¿Te gustó este artículo?, comenta y/o comparte.</p>
-        <table style="margin: 0 auto">
-            <tr>
-                <td>
-                    <a title="Compartir este artículo en Google+" class="fb-comp" href="https://plus.google.com/share?url=<?php echo URL_BASE, $this->url ?>" target="_blank"><img src="<?php echo $this->rutaPublico ?>img/app/gp.png" alt="Comapartir en Google+"></a>
-                </td>
-                <td><span>|</span></td>
-                <td>
-                    <a title="Compartir este artículo en Facebook" class="fb-comp" href="https://www.facebook.com/sharer/sharer.php?u=<?php echo URL_BASE, $this->url ?>" target="_blank"><img src="<?php echo $this->rutaPublico ?>img/app/fb.png" alt="Comapartir en Facebook"></a> 
-                </td>
-            </tr>
-        </table>
+        <div class="compartir">
+            <div class="fb-share-button" data-href="<?php echo URL_BASE, $this->url ?>" data-type="button_count"></div>
+        </div>
+        <div class="compartir">
+            <div class="g-plus" data-action="share" data-annotation="bubble" data-height="24" data-href="<?php echo URL_BASE, $this->url ?>"></div>
+        </div>
+        <div class="compartir">
+            <a href="https://twitter.com/share" class="twitter-share-button" data-url="<?php echo URL_BASE, $this->url ?>" data-lang="es">Twittear</a>
+        </div> 
+        <div class="clear"></div>
     </div>
 </article>
 <div id="comentarios">
@@ -47,12 +42,13 @@
                     <img alt="img" src="<?php echo $this->rutaPublico ?>img/app/error.png">
                     <span>Se ha detectado los siguientes errores:</span>
                     <br>
-                    <?php echo Sesion::get('msj');
+                    <?php
+                    echo Sesion::get('msj');
                     Sesion::matar('msj');
                     ?>
                 </div>
             <?php endif; ?>
-<?php if (Sesion::get('autenticado')) : ?>
+            <?php if (Sesion::get('autenticado')) : ?>
                 <input type="hidden" name="guardar" value="1">
                 <ul>
                     <li>
@@ -63,7 +59,7 @@
                         <input type="submit" class="submit" value="Comentar">
                     </li>
                 </ul>            
-<?php else: ?>
+            <?php else: ?>
                 <p><a href="<?php echo URL_BASE; ?>cuenta/login">Inicie sesion para comentar.</a></p>
                 <p>Y si aún no estas registrado, regístrate, como usuario registrado podrás:</p>
                 <ul>
@@ -73,11 +69,11 @@
                     <li>* Otras cosas interesantes...</li>
                 </ul>
                 <p><a href="<?php echo URL_BASE; ?>cuenta/nuevo">Regístrate ahora! es gratis!</a>, nosotros no venderemos/daremos tus datos a otras personas/empresas.</p>
-<?php endif; ?>
+            <?php endif; ?>
         </form>
     </div>
     <?php if ($this->comentarios) : ?>
-    <?php for ($i = 0; $i < count($this->comentarios); $i++) : ?>
+        <?php for ($i = 0; $i < count($this->comentarios); $i++) : ?>
             <div class="comentario">        
                 <div class="img_comentario">
                     <img src="<?php echo $this->rutaPublico, 'img/usuarios/', $this->comentarios[$i]['foto'] ?>">
@@ -92,12 +88,12 @@
                 <div>
                     <?php if (Sesion::get('nivel') == 4 || Sesion::get('login') == $this->comentarios[$i]['login'] || Sesion::get('login') == $this->datos['login']) : ?>
                         <a href="<?php echo URL_BASE, 'comentario/eliminar/', $this->comentarios[$i]['id'], ADMIN ?>">Eliminar comentario</a>
-        <?php endif; ?>
+                    <?php endif; ?>
                 </div>
             </div>
         <?php endfor; ?>
     <?php else: ?>
         <p>No hay Comentarios..</p>
     <?php endif; ?>
-<?php require RAIZ . 'vistas/_utilidades/paginador.phtml'; ?>
+    <?php require RAIZ . 'vistas/_utilidades/paginador.phtml'; ?>
 </div>

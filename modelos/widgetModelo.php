@@ -38,7 +38,7 @@ class widgetModelo extends Modelo {
     
     public function getWidgets($pagina) {
         $pagina = ($pagina - 1) * REG_PAG;
-        return $this->_bd->getArray('SELECT p.id, p.nombre, p.titulo, p.visible, p.peso FROM widget AS p LIMIT ?, ?', array($pagina, REG_PAG));
+        return $this->_bd->getArray('SELECT p.id, p.nombre, p.titulo, p.visible, p.peso FROM widget AS p ORDER BY p.id DESC LIMIT ?, ?', array($pagina, REG_PAG));
     }
     
     public function getWidget($id) {

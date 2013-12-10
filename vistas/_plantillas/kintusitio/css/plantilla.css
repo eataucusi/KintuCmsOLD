@@ -289,6 +289,12 @@ nav{
     width: 310px;
     float: right;
 }
+.impacto{
+    text-align: center;
+    padding: 10px;
+    background: #EFF2F5;
+    margin: 10px 0;
+}
 /** } **/
 
 
@@ -326,6 +332,14 @@ nav{
     background: -moz-linear-gradient(top, #D65E5E, #811111);
     background: linear-gradient(top, #D65E5E, #811111);
     border: 1px solid #B43F3F;
+}
+#top-script, #bot-script{
+    display: none;
+}
+.compartir{
+    float: left;
+    vertical-align: top;
+    margin: 0 10px;
 }
 /** } **/
 

@@ -8,7 +8,8 @@
     <urlAutor>http://kintucms.org/</urlAutor>
     <detalle>Plantilla para sitio de kintucms</detalle>
     <vistaPrevia>img</vistaPrevia>
-    <posiciones>       
+    <posiciones> 
+        <posicion>top-script</posicion>      
         <posicion>usuario</posicion>        
         <posicion>social</posicion>
         <posicion>menu</posicion>
@@ -17,5 +18,6 @@
         <posicion>derecha</posicion>
         <posicion>footer</posicion>
         <posicion>derechos</posicion>
+        <posicion>bot-script</posicion> 
     </posiciones>
 </plantilla>

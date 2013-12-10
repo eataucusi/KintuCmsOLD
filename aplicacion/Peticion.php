@@ -27,7 +27,9 @@ class Peticion {
     public function __construct() {
         if (isset($_GET['url'])) {
             $url = filter_input(INPUT_GET, 'url', FILTER_SANITIZE_URL);
-            $this->url = htmlentities($url);
+            if (substr($url, strlen($url) - 6) == '/1/777') {
+                $this->url = htmlentities(substr($url, 0, strlen($url) - 6));
+            }
             $url = explode('/', $url);
             $url = array_filter($url);
             
