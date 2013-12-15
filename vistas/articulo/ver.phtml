@@ -35,7 +35,8 @@
 </article>
 <div id="comentarios">
     <h3><span>Comentarios (<?php echo $this->ncoment == 0 ? '0' : $this->ncoment; ?>)</span></h3>
-    <div class="comentario">  
+    <div class="comentario">
+        <?php if (!$parcial) : ?>
         <form method="post" action="<?php echo URL_BASE, 'comentario/comentar/', $this->articulo_id, ADMIN ?>" class="form">
             <?php if (Sesion::get('msj')) : ?>
                 <div class="error">
@@ -71,12 +72,15 @@
                 <p><a href="<?php echo URL_BASE; ?>cuenta/nuevo">Regístrate ahora! es gratis!</a>, nosotros no venderemos/daremos tus datos a otras personas/empresas.</p>
             <?php endif; ?>
         </form>
+        <?php else: ?>
+        <p><a href="<?php echo  URL_BASE, $this->url ?>#comentarios">Comentar.</a></p>
+        <?php endif; ?>
     </div>
     <?php if ($this->comentarios) : ?>
         <?php for ($i = 0; $i < count($this->comentarios); $i++) : ?>
             <div class="comentario">        
                 <div class="img_comentario">
-                    <img src="<?php echo $this->rutaPublico, 'img/usuarios/', $this->comentarios[$i]['foto'] ?>">
+                    <img src="<?php echo $this->rutaPublico, 'img/usuarios/', $this->comentarios[$i]['foto'] ?>" alt="<?php echo $this->comentarios[$i]['login']; ?>">
                 </div>
                 <div class="der_comentario">
                     <p> 

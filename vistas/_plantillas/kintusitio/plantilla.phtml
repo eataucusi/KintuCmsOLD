@@ -6,8 +6,10 @@
         <title><?php echo $this->titulo . ' | ' . DOMINIO ?></title>
         <meta name="description" content="<?php echo $this->meta . ' | ' . DOMINIO ?>">
         <meta property="og:image" content="<?php echo $this->ruta; ?>img/para-facebook.jpg">
+        <meta name="viewport" content="width=device-width">
         <link rel="stylesheet" href="<?php echo $this->rutaPublico ?>css/core.css" media="all" type="text/css">
         <link rel="stylesheet" href="<?php echo $this->ruta ?>css/plantilla.css" media="all" type="text/css">
+        <link rel="stylesheet" href="<?php echo $this->ruta ?>css/responsive.css" media="all" type="text/css">
         <?php for ($i = 0; $i < count($this->_css); $i++) : ?>
             <link rel="stylesheet" href="<?php echo $this->_css[$i] ?>" media="all" type="text/css"> 
         <?php endfor; ?>

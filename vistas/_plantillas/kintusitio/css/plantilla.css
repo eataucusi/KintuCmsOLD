@@ -14,8 +14,6 @@ body{
     font-family: 'Open Sans',"Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
-
-
 .limites{
     width: 1600px;
     margin: 0 auto;
@@ -313,6 +311,12 @@ nav{
 }
 #derecha .cuerpo_widget ul{
     padding-left: 25px;
+}
+#derecha .widget img{
+    max-width: 100%;
+}
+pre{
+    overflow-x: auto;
 }
 #derecha .widget h3{
     padding: 5px;

@@ -226,6 +226,9 @@ class cuentaControlador extends Controlador {
     }
 
     public function login() {
+        if (Sesion::accesoVista('Registrado')) {
+            $this->redireccionar();
+        }
         if ($this->getInt('guardar') == 1) {
             $this->_vista->datos = $_POST;
             $id = $this->_usuario->loginUsuario($this->getAlphaNum('login'), $this->getPass('pass'));

@@ -1,0 +1,97 @@
+/* 
+    Document   : responsive
+    Created on : 31/01/2013, 01:45:07 PM
+    Author     : Edison Ataucusi R. <ediar89@gmail.com>
+    Description:
+        ...
+*/
+@media only screen and (min-width: 1650px){
+    .limites{
+        width: 1600px;
+    }
+}
+
+@media only screen and (min-width: 1520px) and (max-width: 1649px) {
+    .limites{
+        width: 1500px;
+    }
+    #izquierda{
+        width: 1155px;
+    }
+}
+
+@media only screen and (min-width: 1250px) and (max-width: 1499px) {
+    .limites{
+        width: 1250px;
+    }
+    #izquierda{
+        width: 905px;
+    }
+}
+@media only screen and (min-width: 1010px) and (max-width: 1249px) {
+    .limites{
+        width: 1000px;
+    }
+    #izquierda{
+        width: 655px;
+    }
+}
+@media only screen and (min-width: 750px) and (max-width: 1009px) {
+    .limites{
+        width: 740px;
+        overflow: hidden;
+    }
+    #izquierda{
+        width: 460px;
+    }
+    #derecha{
+        width: 250px;
+    }    
+}
+
+@media only screen and (min-width: 620px) and (max-width: 749px) {
+    .limites{
+        width: 630px;
+        overflow: hidden;
+    }
+    #izquierda{
+        width: 350px;
+    }
+    #derecha{
+        width: 250px;
+    }
+}
+@media only screen and (max-width: 619px) {
+    .limites{
+        width: 100%;
+        overflow: hidden;
+        word-wrap: break-word;
+    }
+    #izquierda{
+        width: 100%;
+        float: none;
+        margin-bottom: 20px;
+    }
+    #derecha{
+        width: 100%;
+        float: none;
+    }
+    #slider{
+        display: none;
+    }    
+}
+/*@media only screen and (min-width: 1200px) and (max-width: 1499px) {
+    
+}
+
+ @media only screen and (min-width: 768px) and (max-width: 959px) {
+     
+ }
+ 
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+    
+}
+
+@media only screen and (max-width: 479px) {
+    
+}*/

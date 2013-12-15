@@ -7,47 +7,68 @@
                     <?php $_smenu = $_menu[$i]['submenu']; ?>
                     <li class="expansible">
                         <a class="<?php echo $_menu[$i]['menu']['class'] ?>"
-                           href="<?php if(is_null($_menu[$i]['menu']['ventana'])){echo URL_BASE, $_menu[$i]['menu']['url'], ADMIN;} else { echo $_menu[$i]['menu']['url'];} ?>"
-                           target="<?php echo $_menu[$i]['menu']['ventana'] ?>">
-                               <?php echo $_menu[$i]['menu']['texto']; ?></a>
+                           href="<?php if (is_null($_menu[$i]['menu']['ventana'])) {
+                echo URL_BASE, $_menu[$i]['menu']['url'], ADMIN;
+            } else {
+                echo $_menu[$i]['menu']['url'];
+            } ?>"
+                            <?php echo is_null($_menu[$i]['menu']['ventana']) ? '' : 'target="' . $_menu[$i]['menu']['ventana'] . '"' ?>>
+                            <?php echo $_menu[$i]['menu']['texto']; ?></a>
                         <ul>
-                            <?php for ($j = 0; $j < count($_smenu); $j++): ?>
-                                <?php if ($_smenu[$j]['submenu']): ?>
-                                    <?php $_ssmenu = $_smenu[$j]['submenu']; ?>
+            <?php for ($j = 0; $j < count($_smenu); $j++): ?>
+                                       <?php if ($_smenu[$j]['submenu']): ?>
+                                           <?php $_ssmenu = $_smenu[$j]['submenu']; ?>
                                     <li class="expansible">
                                         <a class="<?php echo $_menu[$i]['menu']['class'] ?>"
-                                           href="<?php if(is_null($_menu[$i]['menu']['ventana'])){ echo URL_BASE, $_smenu[$j]['menu']['url'], ADMIN; } else { echo $_smenu[$j]['menu']['url'];} ?>"
-                                           target="<?php echo $_menu[$i]['menu']['ventana'] ?>">
-                                               <?php echo $_smenu[$j]['menu']['texto']; ?></a>
+                                           href="<?php if (is_null($_menu[$i]['menu']['ventana'])) {
+                           echo URL_BASE, $_smenu[$j]['menu']['url'], ADMIN;
+                       } else {
+                           echo $_smenu[$j]['menu']['url'];
+                       } ?>"
+                                                    <?php echo is_null($_menu[$i]['menu']['ventana']) ? '' : 'target="' . $_menu[$i]['menu']['ventana'] . '"' ?>>
+                                            <?php echo $_smenu[$j]['menu']['texto']; ?></a>
                                         <ul>
-                                            <?php for ($k = 0; $k < count($_ssmenu); $k++): ?>
+                                    <?php for ($k = 0; $k < count($_ssmenu); $k++): ?>
                                                 <li>
                                                     <a class="<?php echo $_ssmenu[$k]['class'] ?>"
-                                                       href="<?php if (is_null($_ssmenu[$k]['ventana'])){ echo URL_BASE, $_ssmenu[$k]['url'], ADMIN; }else{echo $_ssmenu[$k]['url'];} ?>"
-                                                       target="<?php echo $_ssmenu[$k]['ventana'] ?>">
-                                                            <?php echo $_ssmenu[$k]['texto']; ?></a></li>
-                                            <?php endfor; ?>
+                                                       href="<?php if (is_null($_ssmenu[$k]['ventana'])) {
+                                            echo URL_BASE, $_ssmenu[$k]['url'], ADMIN;
+                                        } else {
+                                            echo $_ssmenu[$k]['url'];
+                                        } ?>"
+                                        <?php echo is_null($_ssmenu[$k]['ventana']) ? '' : 'target="' . $_ssmenu[$k]['ventana'] . '"' ?>>
+                        <?php echo $_ssmenu[$k]['texto']; ?></a></li>
+                            <?php endfor; ?>
                                         </ul>
                                     </li>   
-                                <?php else: ?>
+                <?php else: ?>
                                     <li>
                                         <a class="<?php echo $_smenu[$j]['menu']['class'] ?>"
-                                           href="<?php if(is_null($_smenu[$j]['menu']['ventana'])){ echo URL_BASE, $_smenu[$j]['menu']['url'], ADMIN; }else{ echo $_smenu[$j]['menu']['url']; } ?>"
-                                           target="<?php echo $_smenu[$j]['menu']['ventana'] ?>">
-                                               <?php echo $_smenu[$j]['menu']['texto']; ?></a></li>   
-                                <?php endif; ?>
-                            <?php endfor; ?>
+                                           href="<?php if (is_null($_smenu[$j]['menu']['ventana'])) {
+                        echo URL_BASE, $_smenu[$j]['menu']['url'], ADMIN;
+                    } else {
+                        echo $_smenu[$j]['menu']['url'];
+                    } ?>"
+                    <?php echo is_null($_smenu[$j]['menu']['ventana']) ? '' : 'target="' . $_smenu[$j]['menu']['ventana'] . '"' ?>>
+                    <?php echo $_smenu[$j]['menu']['texto']; ?></a></li>   
+                <?php endif; ?>
+            <?php endfor; ?>
                         </ul>
                     </li>
-                <?php else: ?>
+        <?php else: ?>
                     <li>
                         <a class="<?php echo $_menu[$i]['menu']['class'] ?>"
-                           href="<?php if(is_null($_menu[$i]['menu']['ventana'])){ echo URL_BASE, $_menu[$i]['menu']['url'], ADMIN; } else { echo $_menu[$i]['menu']['url'];} ?>"
-                           target="<?php echo $_menu[$i]['menu']['ventana'] ?>">
-                               <?php echo $_menu[$i]['menu']['texto']; ?></a></li>
-                <?php endif; ?>   
-            <?php endfor; ?>
+                           href="<?php if (is_null($_menu[$i]['menu']['ventana'])) {
+                echo URL_BASE, $_menu[$i]['menu']['url'], ADMIN;
+            } else {
+                echo $_menu[$i]['menu']['url'];
+            } ?>"
+            <?php echo is_null($_menu[$i]['menu']['ventana']) ? '' : 'target="' . $_menu[$i]['menu']['ventana'] . '"' ?>>
+            <?php echo $_menu[$i]['menu']['texto']; ?></a></li>
+        <?php endif; ?>   
+    <?php endfor; ?>
         </ul>
         <div class="clear"></div>
     </div>
-<?php endif;
+    <?php
+ endif;
